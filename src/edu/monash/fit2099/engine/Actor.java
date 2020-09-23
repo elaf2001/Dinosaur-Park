@@ -95,7 +95,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	 *
 	 * @return true if and only if hitPoints is positive.
 	 */
-	public boolean isConscious() {
+	public boolean isConscious() { //add code check food level
 		return hitPoints > 0;
 	}
 
