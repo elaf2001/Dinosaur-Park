@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * A class that represents bare dirt.
+ * A class that represents bare dirt and grass.
  */
 public class GrassDirt extends Ground {
 
@@ -16,6 +16,14 @@ public class GrassDirt extends Ground {
 		super('.');
 	}
 
+	/**
+	 * Calculates the probability based on the requirements and allows for the dirt to grow into grass.
+	 * These requirements are:
+	 * If there are no Grass cells nearby or there is a tree in the neighbour cell,
+	 * Dirt has a 2% of growing into grass, but if there are 2 or more grass cells around,
+	 * the Dirt has a probability of 10% of growing into Grass.
+	 * @param location The location of the Ground
+	 */
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
