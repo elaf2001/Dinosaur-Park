@@ -22,7 +22,10 @@ public abstract class Ground implements GroundInterface, Capable, Printable {
 	public char getDisplayChar() {
 		return displayChar;
 	}
-
+	/***
+	 * added new functionality to set the displayChar of this thing
+	 */
+	public void setDisplayChar(char displayChar){this.displayChar = displayChar;}
 	/**
 	 * Returns an empty Action list.
 	 *
