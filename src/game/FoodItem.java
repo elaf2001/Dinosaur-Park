@@ -1,14 +1,18 @@
 package game;
 
 public abstract class FoodItem extends PortableItem {
-    private  int FOOD_POINTS;
+    private int foodPoints;
 
+    public FoodItem(String name, char displayChar, int foodPoints) {
+        super(name, displayChar);
+        this.foodPoints=foodPoints;
+    }
     public FoodItem(String name, char displayChar) {
         super(name, displayChar);
     }
 
     public int getFoodPoints() {
-        return FOOD_POINTS;
+        return foodPoints;
     }
 
     public String getName()

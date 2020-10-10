@@ -13,7 +13,7 @@ import game.PortableItem;
  * It inherits {PortableItem}.
  * Has two variables: turns and age
  */
-public abstract class EggItem extends PortableItem  {
+public abstract class EggItem extends FoodItem {
     int turns = 0; //shouldnt these two be private or protected at least?
     int age =0;
 
@@ -23,7 +23,7 @@ public abstract class EggItem extends PortableItem  {
      * @param displayChar - Display character of the egg
      */
     public EggItem(String name, char displayChar) {
-        super(name, displayChar);
+        super(name, displayChar, 10);
     }
 
     /**

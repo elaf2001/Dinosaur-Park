@@ -9,6 +9,7 @@ public class LaserGun extends WeaponItem {
      */
     public LaserGun() {
         super("LaserGun", 'L', 50, "shooting");
+        priceEcoPoints=500;
     }
 
 }
