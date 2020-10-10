@@ -15,6 +15,7 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	protected char displayChar;
 	protected Actions allowableActions;
 	protected Capabilities capabilities = new Capabilities();
+	protected int priceEcoPoints;
 
 	/***
 	 * Constructor.
@@ -130,4 +131,10 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	public void removeCapability(Enum<?> capability) {
 		capabilities.removeCapability(capability);
 	}
+
+	public int getPriceEcoPoints() {
+		return priceEcoPoints;
+	}
+
+
 }

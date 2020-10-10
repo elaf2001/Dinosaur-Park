@@ -14,7 +14,7 @@ import game.PortableItem;
  * Has two variables: turns and age
  */
 public abstract class EggItem extends PortableItem  {
-    int turns = 0;
+    int turns = 0; //shouldnt these two be private or protected at least?
     int age =0;
 
     /**
