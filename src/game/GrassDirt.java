@@ -32,14 +32,33 @@ public class GrassDirt extends Ground {
 		GameMap gameMap = location.map();
 		// Checking
 		ArrayList<Location> locations = new ArrayList<>();
-		locations.add(new Location(gameMap,xLocation,yLocation+1)); //North
-		locations.add(new Location(gameMap,xLocation,yLocation-1)); //South
-		locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
-		locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
-		locations.add(new Location(gameMap, xLocation-1, yLocation+1)); //NorthWest
-		locations.add(new Location(gameMap, xLocation+1, yLocation+1)); //NorthEast
-		locations.add(new Location(gameMap, xLocation-1, yLocation-1)); //SouthWest
-		locations.add(new Location(gameMap, xLocation+1, yLocation-1)); //SouthEast
+		if (xLocation == 0 & yLocation == 0) {
+			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
+			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
+			locations.add(new Location(gameMap, xLocation+1, yLocation+1)); //SouthEast
+		} else if(xLocation == 0 & yLocation == 24){
+			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
+			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
+			locations.add(new Location(gameMap, xLocation+1, yLocation-1)); //NorthEast
+		} else if(xLocation ==79 & yLocation==0){
+			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
+			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
+			locations.add(new Location(gameMap, xLocation-1, yLocation+1)); //SouthWest
+		} else if(xLocation == 79 & yLocation==24){
+			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
+			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
+			locations.add(new Location(gameMap, xLocation-1, yLocation-1)); //NorthWest
+		} else {
+			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
+			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
+			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
+			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
+			locations.add(new Location(gameMap, xLocation+1, yLocation+1)); //SouthEast
+			locations.add(new Location(gameMap, xLocation+1, yLocation-1)); //NorthEast
+			locations.add(new Location(gameMap, xLocation-1, yLocation+1)); //SouthWest
+			locations.add(new Location(gameMap, xLocation-1, yLocation-1)); //NorthWest
+		}
+
 		// checking the arrays surrounding the grass location, can u check if this is correct?
 		for(Location place: locations){
 			Ground ground = place.getGround();
