@@ -15,7 +15,6 @@ public class VendingMachine extends Ground {
 
     public void checkSufficient(Player player, Item item)
     {
-
         if (player.getEcoPoints()>=getRequiredPoints(item))
         {
             player.payEcoPoints(getRequiredPoints(item));

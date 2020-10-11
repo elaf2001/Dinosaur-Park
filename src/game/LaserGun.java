@@ -8,8 +8,7 @@ public class LaserGun extends WeaponItem {
      * Constructor.
      */
     public LaserGun() {
-        super("LaserGun", 'L', 50, "shooting");
-        priceEcoPoints=500;
+        super("LaserGun", 'L', 50, "shooting", 500);
     }
 
 }

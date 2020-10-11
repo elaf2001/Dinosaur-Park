@@ -1,9 +1,9 @@
 package game;
 
-public class FruitItem extends PortableItem {
+public class FruitItem extends FoodItem {
 
     public FruitItem(String name, char displayChar) {
-        super(name, displayChar);
-        priceEcoPoints=30;
+        super(name, displayChar,30, 30);
+
     }
 }

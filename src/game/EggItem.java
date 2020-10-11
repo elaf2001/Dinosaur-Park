@@ -14,16 +14,16 @@ import game.PortableItem;
  * Has two variables: turns and age
  */
 public abstract class EggItem extends FoodItem {
-    int turns = 0; //shouldnt these two be private or protected at least?
-    int age =0;
+    private int turns = 0;
+    private int age =0;
 
     /**
      * Constructor.
      * @param name - name of the egg
      * @param displayChar - Display character of the egg
      */
-    public EggItem(String name, char displayChar) {
-        super(name, displayChar, 10);
+    public EggItem(String name, char displayChar, int foodPoints, int priceEcoPoints) {
+        super(name, displayChar, foodPoints,priceEcoPoints );
     }
 
     /**

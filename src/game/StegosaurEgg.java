@@ -11,8 +11,7 @@ public class StegosaurEgg extends EggItem{
      * @param name The name of the Stegosaur Egg
      */
     public StegosaurEgg(String name) {
-        super(name, '0');
-        priceEcoPoints=200;
+        super(name, '0',10,200);
     }
 
     /**

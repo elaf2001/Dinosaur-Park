@@ -133,7 +133,7 @@ public abstract class Dinosaur extends Actor {
      */
     public void setGender() {
         String[] genders= new String[]{"male", "female"};
-        double randomChoice=  Math.random();
+        double randomChoice =  Math.random();
         if(randomChoice<0.5){
             randomChoice= 0;
         }
@@ -162,7 +162,6 @@ public abstract class Dinosaur extends Actor {
             this.is_alive=false;
             //the dinosaur dies and becomes a meat
         }
-
     }
 
 
