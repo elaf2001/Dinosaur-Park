@@ -19,5 +19,11 @@ public class Tree extends Ground {
 			displayChar = 't';
 		if (age == 20)
 			displayChar = 'T';
+		// Tree has small % chance of dropping a fruit
+		if(new java.util.Random().nextInt(20)==0){
+			FruitItem newFruit = new FruitItem("fruit", 'f');
+			location.addItem(newFruit);
+
+		}
 	}
 }

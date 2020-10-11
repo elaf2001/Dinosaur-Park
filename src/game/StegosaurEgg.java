@@ -22,7 +22,7 @@ public class StegosaurEgg extends EggItem{
      */
     public void hatchEgg(Location currentLocation){
         currentLocation.removeItem(this);
-        Stegosaur newStegosaur = new Stegosaur("Stegosaur");
+        Stegosaur newStegosaur = new Stegosaur("Stegosaur", 10);
         currentLocation.addActor(newStegosaur);
     }
 }

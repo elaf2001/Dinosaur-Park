@@ -9,7 +9,7 @@ public class VendingMachine extends Ground {
      *
      * @param displayChar character to display for this type of terrain
      */
-    public VendingMachine(char displayChar) {
+    public VendingMachine() {
         super('V');
     }
 

@@ -1,11 +1,7 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.*;
+
 import java.lang.Math;
 
 /**
@@ -178,11 +174,23 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        Action wander = behaviour.getAction(this, map);
-        if (wander != null)
-            return wander;
+        //decrease the food lev
+        decreaseFoodLevel();
+        increaseAge();
+        countToDie();
+        if (is_alive == false) {
+            Location locationOfActor = map.locationOf(this);
+            map.removeActor(this);
+            Item corpse = new PortableItem("dead " + this, '%');
+            locationOfActor.addItem(corpse);
+        }
+        if (isConscious()) {
+            Action wander = behaviour.getAction(this, map);
+            if (wander != null) {
+                return wander;
+            }
 
+        }
         return new DoNothingAction();
     }
-
 }

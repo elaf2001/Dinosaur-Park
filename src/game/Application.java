@@ -18,11 +18,11 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new GrassDirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new GrassDirt(), new Wall(), new Floor(), new Tree(), new VendingMachine());
 		
 		List<String> map = Arrays.asList(
 		"................................................................................",
-		"................................................................................",
+		"..............................................................................V.",
 		".....#######....................................................................",
 		".....#_____#....................................................................",
 		".....#_____#....................................................................",
@@ -53,8 +53,8 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 		
 		// Place a pair of stegosaurs in the middle of the map
-		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur"));
-		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur"));
+		gameMap.at(30, 12).addActor(new Stegosaur("Stegosaur", 50));
+		gameMap.at(32, 12).addActor(new Stegosaur("Stegosaur", 50));
 		
 			
 		world.run();

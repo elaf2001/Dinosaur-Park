@@ -30,51 +30,85 @@ public class GrassDirt extends Ground {
 		int xLocation = location.x();
 		int yLocation = location.y();
 		GameMap gameMap = location.map();
+		Location[][] mapLocations = gameMap.getMap();
 		// Checking
 		ArrayList<Location> locations = new ArrayList<>();
-		if (xLocation == 0 & yLocation == 0) {
-			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
-			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
-			locations.add(new Location(gameMap, xLocation+1, yLocation+1)); //SouthEast
-		} else if(xLocation == 0 & yLocation == 24){
-			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
-			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
-			locations.add(new Location(gameMap, xLocation+1, yLocation-1)); //NorthEast
-		} else if(xLocation ==79 & yLocation==0){
-			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
-			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
-			locations.add(new Location(gameMap, xLocation-1, yLocation+1)); //SouthWest
-		} else if(xLocation == 79 & yLocation==24){
-			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
-			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
-			locations.add(new Location(gameMap, xLocation-1, yLocation-1)); //NorthWest
+
+		if (yLocation == 0) {
+			locations.add(mapLocations[xLocation][yLocation + 1]); //South
+			if(xLocation==0){
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+			}else if(xLocation >0 & xLocation <79){
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+				locations.add(mapLocations[xLocation-1][yLocation]); //West
+				locations.add(mapLocations[xLocation-1][yLocation+1]); //SouthWest
+			}
+			else {
+				locations.add(mapLocations[xLocation-1][yLocation]); //West
+				locations.add(mapLocations[xLocation-1][yLocation+1]); //SouthWest
+			}
+		} else if(yLocation == 24){
+			locations.add(mapLocations[xLocation][yLocation-1]); //North
+			if(xLocation==0){
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
+			}else if(xLocation >0 & xLocation <79){
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
+				locations.add(mapLocations[xLocation-1][yLocation]); //West
+				locations.add(mapLocations[xLocation-1][yLocation-1]); //NorthWest
+			}
+			else {
+				locations.add(mapLocations[xLocation-1][yLocation]); //West
+				locations.add(mapLocations[xLocation-1][yLocation-1]); //NorthWest
+			}
 		} else {
-			locations.add(new Location(gameMap,xLocation,yLocation+1)); //South
-			locations.add(new Location(gameMap, xLocation+1, yLocation)); //East
-			locations.add(new Location(gameMap, xLocation-1, yLocation)); //West
-			locations.add(new Location(gameMap,xLocation,yLocation-1)); //North
-			locations.add(new Location(gameMap, xLocation+1, yLocation+1)); //SouthEast
-			locations.add(new Location(gameMap, xLocation+1, yLocation-1)); //NorthEast
-			locations.add(new Location(gameMap, xLocation-1, yLocation+1)); //SouthWest
-			locations.add(new Location(gameMap, xLocation-1, yLocation-1)); //NorthWest
+			locations.add(mapLocations[xLocation][yLocation + 1]); //South
+			locations.add(mapLocations[xLocation][yLocation - 1]); //North
+			if(xLocation == 0){
+				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+				locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+			} else if (xLocation ==79){
+				locations.add(mapLocations[xLocation - 1][yLocation]); //West
+				locations.add(mapLocations[xLocation - 1][yLocation + 1]); //SouthWest
+				locations.add(mapLocations[xLocation - 1][yLocation - 1]); //NorthWest
+			} else {
+				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+				locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
+				locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				locations.add(mapLocations[xLocation - 1][yLocation]); //West
+				locations.add(mapLocations[xLocation - 1][yLocation + 1]); //SouthWest
+				locations.add(mapLocations[xLocation - 1][yLocation - 1]); //NorthWest
+			}
 		}
 
 		// checking the arrays surrounding the grass location, can u check if this is correct?
 		for(Location place: locations){
 			Ground ground = place.getGround();
 			int turn = 0;
-			if(ground.getDisplayChar()== '.'){
+			// if it is next to a tree, it only has 2% of growing into grass
+			if (ground.getDisplayChar() == '+' || ground.getDisplayChar() == 't' || ground.getDisplayChar() == 'T' || ground.getDisplayChar() == 'f'){
 				if(new java.util.Random().nextInt(50)==0){
 					location.getGround().setDisplayChar('g');
 					return;
 				}
-			} else if(ground.getDisplayChar()== 'g'){
+			// if it is next to grass, it has 10% of growing into grass
+			} else if(ground.getDisplayChar()== 'g') {
 				turn +=1;
 				if (turn == 2){
 					if(new java.util.Random().nextInt(10)==0){
 						location.getGround().setDisplayChar('g');
 						return;
 					}
+				}
+			// else, it will have 2% of growing into grass
+			} else {
+				if(new java.util.Random().nextInt(50)==0){
+					location.getGround().setDisplayChar('g');
+					return;
 				}
 			}
 		}
