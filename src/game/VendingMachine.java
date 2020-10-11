@@ -13,23 +13,21 @@ public class VendingMachine extends Ground {
         super('V');
     }
 
-    public void checkSufficient(Player player, Item item)
+    public void checkSufficient(Player player, BoughtItem boughtItem)
     {
-        if (player.getEcoPoints()>=getRequiredPoints(item))
+        if (player.getEcoPoints()>=getRequiredPoints(boughtItem))
         {
-            player.payEcoPoints(getRequiredPoints(item));
-            player.addItemToInventory(item);
+            player.payEcoPoints(getRequiredPoints(boughtItem));
+            player.addItemToInventory(boughtItem);
         }
         else
         {
             System.out.println("Not enough money to buy the following item");
         }
     }
-    public int getRequiredPoints(Item item){
-        return item.getPriceEcoPoints();
+    public int getRequiredPoints(BoughtItem boughtItem){
+        return boughtItem.getPriceEcoPoints();
     }
-
-
 
 
     // string menu asking the user what he wants to buy

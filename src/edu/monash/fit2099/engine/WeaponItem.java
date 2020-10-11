@@ -8,6 +8,7 @@ public abstract class WeaponItem extends Item implements Weapon{
 	private int damage;
 	private String verb;
 
+
 	/** Constructor.
 	 *
 	 * @param name name of the item
@@ -15,8 +16,8 @@ public abstract class WeaponItem extends Item implements Weapon{
 	 * @param damage amount of damage this weapon does
 	 * @param verb verb to use for this weapon, e.g. "hits", "zaps"
 	 */
-	public WeaponItem(String name, char displayChar, int damage, String verb, int priceEcoPoint) {
-		super(name, displayChar, true, priceEcoPoint);
+	public WeaponItem(String name, char displayChar, int damage, String verb) {
+		super(name, displayChar, true);
 		this.damage = damage;
 		this.verb = verb;
 	}

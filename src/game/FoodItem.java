@@ -1,6 +1,6 @@
 package game;
 
-public abstract class FoodItem extends PortableItem {
+public abstract class FoodItem extends BoughtItem {
     private int foodPoints;
 
     public FoodItem(String name, char displayChar, int foodPoints, int priceEcoPoints ) {

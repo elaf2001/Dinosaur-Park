@@ -15,7 +15,6 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	protected char displayChar;
 	protected Actions allowableActions;
 	protected Capabilities capabilities = new Capabilities();
-	protected int priceEcoPoints;
 
 	/***
 	 * Constructor.
@@ -24,12 +23,11 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	 * @param displayChar the character to use to represent this item if it is on the ground
 	 * @param portable true if and only if the Item can be picked up
 	 */
-	public Item(String name, char displayChar, boolean portable, int priceEcoPoints) {
+	public Item(String name, char displayChar, boolean portable) {
 		this.name = name;
 		this.displayChar = displayChar;
 		this.portable = portable;
 		allowableActions = new Actions();
-		priceEcoPoints= priceEcoPoints;
 	}
 
     /**
@@ -133,9 +131,6 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 		capabilities.removeCapability(capability);
 	}
 
-	public int getPriceEcoPoints() {
-		return priceEcoPoints;
-	}
 
 
 }
