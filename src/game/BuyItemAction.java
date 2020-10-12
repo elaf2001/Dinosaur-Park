@@ -18,7 +18,7 @@ public class BuyItemAction extends Action {
 
     public String execute(Actor actor, GameMap map) {
         String output = "";
-        BoughtItem itemToBuy = vendingMachine.menuVendingMachine();
+        Item itemToBuy = vendingMachine.menuVendingMachine();
         int requiredEcoPoints = vendingMachine.getRequiredPoints(itemToBuy);
         if (actor instanceof Player) {
             if (((Player) actor).getEcoPoints() >= requiredEcoPoints) {

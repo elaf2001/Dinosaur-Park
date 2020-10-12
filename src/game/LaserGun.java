@@ -3,22 +3,18 @@ package game;
 import edu.monash.fit2099.engine.Weapon;
 import edu.monash.fit2099.engine.WeaponItem;
 
-public class LaserGun extends BoughtItem implements Weapon {
-    private int priceEcoPoint;
+public class LaserGun extends WeaponItem implements Weapon {
+    //constant and has to be capital !!!
+
+    private int priceEcoPoint = 500;
     /**
      * Constructor.
      */
     public LaserGun() {
-        super("LaserGun", 'L', 500);
+        super("LaserGun", 'L', 50, "shooting");
     }
 
-    @Override
-    public int damage() {
-        return 50;
-    }
-
-    @Override
-    public String verb() {
-        return "shooting";
+    public int getPriceEcoPoints() {
+        return priceEcoPoint;
     }
 }

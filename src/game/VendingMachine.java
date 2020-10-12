@@ -18,13 +18,19 @@ public class VendingMachine extends Ground {
         return new Actions(new BuyItemAction(this));
     }
 
-    public int getRequiredPoints(BoughtItem boughtItem){
-        return boughtItem.getPriceEcoPoints();
+    public int getRequiredPoints(Item boughtItem){
+        int requiredPoints =0;
+        if (boughtItem instanceof BoughtItem){
+            requiredPoints = ((BoughtItem) boughtItem).getPriceEcoPoints();
+        } else if (boughtItem instanceof LaserGun ){
+            requiredPoints = ((LaserGun) boughtItem).getPriceEcoPoints();
+        }
+        return requiredPoints;
     }
 
-    public BoughtItem menuVendingMachine()
+    public Item menuVendingMachine()
     {
-        BoughtItem boughtItem;
+        Item boughtItem;
         Display display= new Display();
         display.println("What would you like to purchase?");
         display.println("1. Hay - 20 EP ");
