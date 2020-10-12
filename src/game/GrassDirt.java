@@ -85,35 +85,42 @@ public class GrassDirt extends Ground {
 			}
 		}
 
-		// checking the arrays surrounding the grass location, can u check if this is correct?
+		boolean isTree=false;
+		boolean isGrass=false;
+		// checking the arrays surrounding the grass location
 		for(Location place: locations){
 			Ground ground = place.getGround();
-			int turn = 0;
-			// if it is next to a tree, it only has 2% of growing into grass
-			if (ground.getDisplayChar() == '+' || ground.getDisplayChar() == 't' || ground.getDisplayChar() == 'T' || ground.getDisplayChar() == 'f'){
-				if(new java.util.Random().nextInt(50)==0){
-					location.getGround().setDisplayChar('g');
-					return;
-				}
+			//counter for tree changes if there is a tree around
+			if (ground.getDisplayChar() == '+' || ground.getDisplayChar() == 't' || ground.getDisplayChar() == 'T' || ground.getDisplayChar() == 'f')
+			{
+				isTree=true;
+			}
+			//counter for grass changes if there is grass around
+			else if(ground.getDisplayChar()== 'g') {
+				isGrass=true;
+			}
+		}
+		// if it is next to a tree, it only has 2% of growing into grass
+		if (isTree){
+			if(Math.random()<=0.02)
+			{
+				location.getGround().setDisplayChar('g');
+			}
+		}
+		else
+		{
 			// if it is next to grass, it has 10% of growing into grass
-			} else if(ground.getDisplayChar()== 'g') {
-				turn +=1;
-				if (turn == 2){
-					if(new java.util.Random().nextInt(10)==0){
-						location.getGround().setDisplayChar('g');
-						return;
-					}
-				}
-			// else, it will have 2% of growing into grass
-			} else {
-				if(new java.util.Random().nextInt(50)==0){
+			if(isGrass){
+				if(Math.random()<=0.1){
 					location.getGround().setDisplayChar('g');
-					return;
+				}
+			}
+			//if there is neither tree, nor grass around it has 2% probability of growing
+			else{
+				if(Math.random()<=0.02){
+					location.getGround().setDisplayChar('g');
 				}
 			}
 		}
-
-
-
 	}
 }
