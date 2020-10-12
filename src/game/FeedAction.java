@@ -21,7 +21,7 @@ public class FeedAction extends Action {
         display.println("5. Stegosaur eggs ");
         display.println("6. Allosaur eggs ");
         char playerChoice=display.readChar();
-        if (String.valueOf(playerChoice).equals('1')){
+        if (playerChoice == '1'){
             boolean found=false;
             if (target instanceof Stegosaur) {
                 for (Item item : actor.getInventory()) {
@@ -48,7 +48,7 @@ public class FeedAction extends Action {
                output+="This dinosaur is not vegeterain." ;
             }
         }
-        else if(String.valueOf(playerChoice).equals('2'))
+        else if(playerChoice == '2')
         {
             boolean found=false;
             if (target instanceof Stegosaur) {
@@ -76,7 +76,7 @@ public class FeedAction extends Action {
                 output+="This dinosaur is not vegeterain." ;
             }
         }
-        else if(String.valueOf(playerChoice).equals('3'))
+        else if(playerChoice == '3')
         {
             boolean found=false;
             if (target instanceof Stegosaur) {
@@ -104,7 +104,7 @@ public class FeedAction extends Action {
                 output+="This dinosaur is not vegeterain." ;
             }
         }
-        else if(String.valueOf(playerChoice).equals('4'))
+        else if(playerChoice == '4')
         {
             boolean found=false;
             if (target instanceof Allosaur) {
@@ -132,7 +132,7 @@ public class FeedAction extends Action {
                 output+="This dinosaur is not carnivore." ;
             }
         }
-        else if(String.valueOf(playerChoice).equals('5'))
+        else if(playerChoice == '5')
         {
             boolean found=false;
             if (target instanceof Allosaur) {
@@ -160,7 +160,7 @@ public class FeedAction extends Action {
                 output+="This dinosaur is not carnivore." ;
             }
         }
-        else if(String.valueOf(playerChoice).equals('6'))
+        else if(playerChoice == '6')
         {
             boolean found=false;
             if (target instanceof Allosaur) {
@@ -198,6 +198,6 @@ public class FeedAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor + " feeds " + target;
     }
 }

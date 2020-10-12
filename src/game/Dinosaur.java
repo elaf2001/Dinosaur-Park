@@ -3,6 +3,8 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.lang.Math;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An abstract class that holds all the attributes and methods shared by any kind of the dinosaur.
@@ -35,8 +37,10 @@ public abstract class Dinosaur extends Actor {
     }
 
     @Override
-    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-        return new Actions(new AttackAction(this));
+    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
+        Actions actions = new Actions(new AttackAction(this));
+        actions.add(new FeedAction(this));
+        return actions;
     }
 
     /**
