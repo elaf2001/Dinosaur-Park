@@ -87,19 +87,26 @@ public abstract class Dinosaur extends Actor {
      * This method is called if the dinosaur is fed or eating that it found
      * @param food is the food object that dinosuar is eating
      */
-    public void eat(FoodItem food){
-        //if mealKit increases dinosaur food level to maximum
-        if (food instanceof MealKitItem){
-            this.foodLevel=100;
+    public boolean eat(FoodItem food){
+        if (this.getFoodLevel()==100)
+        {
+            return false;
         }
-        // if not mealKit increases dinosaur food level by amount food points of this food
         else {
-            int increment = food.getFoodPoints();
-            if (increment < 100 - foodLevel) {
-                this.foodLevel += increment;
-            } else {
+            //if mealKit increases dinosaur food level to maximum
+            if (food instanceof MealKitItem) {
                 this.foodLevel = 100;
             }
+            // if not mealKit increases dinosaur food level by amount food points of this food
+            else {
+                int increment = food.getFoodPoints();
+                if (increment < 100 - foodLevel) {
+                    this.foodLevel += increment;
+                } else {
+                    this.foodLevel = 100;
+                }
+            }
+            return true;
         }
     }
     /**

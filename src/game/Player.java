@@ -7,6 +7,8 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 
+import java.util.ArrayList;
+
 /**
  * Class representing the Player.
  */
@@ -14,6 +16,7 @@ public class Player extends Actor {
 
 	private Menu menu = new Menu();
 	private int ecoPoints;
+	//private ArrayList<BoughtItem> inventory= new ArrayList<BoughtItem>();
 
 	/**
 	 * Constructor.

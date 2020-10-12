@@ -21,7 +21,7 @@ public class Tree extends Ground {
 			displayChar = 'T';
 		// Tree has small % chance of dropping a fruit
 		if(Math.random()<=0.05){
-			FruitItem newFruit = new FruitItem("fruit", 'f');
+			FruitItem newFruit = new FruitItem();
 			location.addItem(newFruit);
 		}
 	}

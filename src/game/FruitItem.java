@@ -4,9 +4,8 @@ import edu.monash.fit2099.engine.Location;
 
 public class FruitItem extends FoodItem {
     private int turns = 0;
-    public FruitItem(String name, char displayChar) {
-        super(name, displayChar,30, 30);
-
+    public FruitItem() {
+        super("Fruit", 'F',30, 30);
     }
 
     @Override

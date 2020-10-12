@@ -2,8 +2,8 @@ package game;
 
 public class HayItem extends FoodItem{
 
-    public HayItem(String name, char displayChar) {
-        super(name, 'h', 20, 20);
+    public HayItem() {
+        super("Hay", 'h', 20, 20);
     }
 
 }
