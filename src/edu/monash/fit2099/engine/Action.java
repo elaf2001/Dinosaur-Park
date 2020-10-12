@@ -15,7 +15,8 @@ public abstract class Action implements ActionInterface{
 	 * @return a description of what happened that can be displayed to the user.
 	 */
 	public abstract String execute(Actor actor, GameMap map);
-	
+
+
 	/**
 	 * Returns a descriptive string
 	 * @param actor The actor performing the action.

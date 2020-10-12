@@ -1,7 +1,9 @@
 package edu.monash.fit2099.engine;
 
 import java.util.List;
+import java.util.Random;
 
+import edu.monash.fit2099.demo.mars.Floor;
 import edu.monash.fit2099.interfaces.ItemInterface;
 
 /**
@@ -132,5 +134,31 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	}
 
 
+    public static class WindowSmashAction extends Action {
 
+        private String direction;
+        private Location windowLocation;
+        private Random rand = new Random();
+
+        public WindowSmashAction(String direction, Location windowLocation) {
+            this.direction = direction;
+            this.windowLocation = windowLocation;
+        }
+
+        @Override
+        public String execute(Actor actor, GameMap map) {
+            if(rand.nextBoolean()) {
+                return actor + " hurts their foot.";
+            }
+            else {
+                windowLocation.setGround(new Floor());
+                return "The window is smashed";
+            }
+        }
+
+        @Override
+        public String menuDescription(Actor actor) {
+            return actor + " smashes the window to the " + direction;
+        }
+    }
 }

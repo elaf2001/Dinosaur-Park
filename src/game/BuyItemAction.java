@@ -9,6 +9,7 @@ public class BuyItemAction extends Action {
      */
     protected VendingMachine vendingMachine;
 
+
     public BuyItemAction(VendingMachine vendingMachine)
     {
         this.vendingMachine=vendingMachine;
@@ -33,6 +34,6 @@ public class BuyItemAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor+" buys from"+vendingMachine;
+        return actor+" buys from"+ " vending Machine";
     }
 }

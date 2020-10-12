@@ -16,5 +16,6 @@ public class Allosaur extends Dinosaur {
     public Allosaur(String name) {
         super(name, 'a', 100);
     }
+
     //has its own special behaviours that are including attack etc
 }

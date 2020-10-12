@@ -1,5 +1,7 @@
 package edu.monash.fit2099.engine;
 
+import edu.monash.fit2099.interfaces.ActionInterface;
+
 /**
  * Action to allow items to be picked up.
  */
@@ -19,7 +21,6 @@ public class PickUpItemAction extends Action {
 	/**
 	 * Add the item to the actor's inventory.
 	 *
-	 * @see Action#execute(Actor, GameMap)
 	 * @param actor The actor performing the action.
 	 * @param map The map the actor is on.
 	 * @return a suitable description to display in the UI

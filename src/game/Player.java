@@ -6,13 +6,14 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.interfaces.ActorInterface;
 
 import java.util.ArrayList;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor {
+public class Player extends Actor implements ActorInterface {
 
 	private Menu menu = new Menu();
 	private int ecoPoints;
@@ -27,7 +28,7 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		ecoPoints=100; //not sure
+		ecoPoints=0;
 	}
 
 	@Override
@@ -38,17 +39,16 @@ public class Player extends Actor {
 		return menu.showMenu(this, actions, display);
 	}
 
-	public int getEcoPoints() {
+	public int getEcoPoints(){
 		return ecoPoints;
 	}
 
-	public void payEcoPoints(int amountToPay)
-	{
-		this.ecoPoints-=amountToPay;
+	public void payEcoPoints(int ecoPoints){
+		this.ecoPoints -= ecoPoints;
 	}
 
-	public void earnEcoPoints(int amountToEarn)
-	{
-		this.ecoPoints-=amountToEarn;
+	public void gainEcoPoint( int ecoPoints){
+		this.ecoPoints += ecoPoints;
 	}
+
 }
