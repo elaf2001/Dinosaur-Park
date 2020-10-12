@@ -21,6 +21,7 @@ public class VendingMachine extends Ground {
         return boughtItem.getPriceEcoPoints();
     }
 
+
     public BoughtItem menuVendingMachine()
     {
         BoughtItem boughtItem;

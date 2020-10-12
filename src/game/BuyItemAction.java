@@ -15,26 +15,20 @@ public class BuyItemAction extends Action {
     }
 
 
-    public String execute(Player player, GameMap map) {
-        String output="";
-        BoughtItem itemToBuy=vendingMachine.menuVendingMachine();
-        int requiredEcoPoints=vendingMachine.getRequiredPoints(itemToBuy);
-        if (player.getEcoPoints()>= requiredEcoPoints)
-        {
-            player.payEcoPoints(requiredEcoPoints);
-            player.addItemToInventory(itemToBuy);
-            output+="Item is successfully bought";
-        }
-        else
-        {
-            output+="Not enough money to buy the following item";
+    public String execute(Actor actor, GameMap map) {
+        String output = "";
+        BoughtItem itemToBuy = vendingMachine.menuVendingMachine();
+        int requiredEcoPoints = vendingMachine.getRequiredPoints(itemToBuy);
+        if (actor instanceof Player) {
+            if (((Player) actor).getEcoPoints() >= requiredEcoPoints) {
+                ((Player) actor).payEcoPoints(requiredEcoPoints);
+                ((Player) actor).addItemToInventory(itemToBuy);
+                output += "Item is successfully bought";
+            } else {
+                output += "Not enough money to buy the following item";
+            }
         }
         return output;
-    }
-    
-    @Override
-    public String execute(Actor actor, GameMap map) {
-        return null;
     }
 
     @Override
