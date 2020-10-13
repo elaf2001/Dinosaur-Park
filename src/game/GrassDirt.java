@@ -1,8 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,6 +12,16 @@ public class GrassDirt extends Ground {
 
 	public GrassDirt() {
 		super('.');
+	}
+
+	@Override
+	public Actions allowableActions(Actor actor, Location location, String direction){
+		char ground = location.getDisplayChar();
+		Actions actions = new Actions();
+		if (ground == 'g'){
+			actions.add(new HarvestGrassAction(this));
+		}
+		return actions;
 	}
 
 	/**
