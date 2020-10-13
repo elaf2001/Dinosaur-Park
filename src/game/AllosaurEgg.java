@@ -14,6 +14,10 @@ public class AllosaurEgg extends EggItem{
         super(name, 'O',10,1000);
     }
 
+    @Override
+    public void increasePlayerPoints(Location location, int ecoPoints) {
+        super.increasePlayerPoints(location, ecoPoints);
+    }
     /**
      * This function will allow the egg to hatch by removing the egg item and adding
      * another dinosaur. The dinosaur added will be based on the type of egg. In this
@@ -22,6 +26,7 @@ public class AllosaurEgg extends EggItem{
      */
     public void hatchEgg(Location currentLocation){
         currentLocation.removeItem(this);
+        this.increasePlayerPoints(currentLocation,1000);
         Allosaur newAllosaur = new Allosaur("Allosaur");
         currentLocation.addActor(newAllosaur);
     }

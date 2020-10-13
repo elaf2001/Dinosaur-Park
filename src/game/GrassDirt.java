@@ -27,6 +27,22 @@ public class GrassDirt extends Ground {
 		}
 		return null;
 	}
+
+	public void increasePlayerPoints(Location location){
+		GameMap map = location.map();
+		Location[][] mapLocations = map.getMap();
+		for (int row = 0; row < mapLocations.length; row++) {
+			for (int col = 0; col < mapLocations[row].length; col++) {
+				Location possibleLocation = mapLocations[row][col];
+				if(possibleLocation.containsAnActor()){
+					Actor actor = possibleLocation.getActor();
+					if (actor instanceof Player){
+						((Player) actor).gainEcoPoint(1);
+					}
+				}
+			}
+		}
+	}
 	/**
 	 * Calculates the probability based on the requirements and allows for the dirt to grow into grass.
 	 * These requirements are:
@@ -116,6 +132,7 @@ public class GrassDirt extends Ground {
 			if(Math.random()<=0.02)
 			{
 				location.getGround().setDisplayChar('g');
+				increasePlayerPoints(location);
 			}
 		}
 		else if(location.getGround().getDisplayChar() != 'g'){
@@ -123,12 +140,14 @@ public class GrassDirt extends Ground {
 			if(isGrass){
 				if(Math.random()<=0.1){
 					location.getGround().setDisplayChar('g');
+					increasePlayerPoints(location);
 				}
 			}
 			//if there is neither tree, nor grass around it has 2% probability of growing
 			else{
 				if(Math.random()<=0.02){
 					location.getGround().setDisplayChar('g');
+					increasePlayerPoints(location);
 				}
 			}
 		}

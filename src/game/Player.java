@@ -21,7 +21,7 @@ public class Player extends Actor implements ActorInterface {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		ecoPoints=1000;
+		ecoPoints=0;
 	}
 
 	@Override

@@ -27,10 +27,14 @@ public class FeedAction extends Action {
                 for (Item item : actor.getInventory()) {
                     if (item instanceof HayItem) {
                         if(target.eat((FoodItem) item)){
-                            actor.removeItemFromInventory(item);
-                            output+="Dinosaur is successfully fed";
-                            found=true;
-                            break;
+                            if(actor instanceof Player){
+                                actor.removeItemFromInventory(item);
+                                ((Player) actor).gainEcoPoint(10);
+                                output+="Dinosaur is successfully fed";
+                                found=true;
+                                break;
+                            }
+
                         }
                         else
                         {
@@ -55,10 +59,14 @@ public class FeedAction extends Action {
                 for (Item item : actor.getInventory()) {
                     if (item instanceof FruitItem) {
                         if(target.eat((FoodItem) item)){
-                            actor.removeItemFromInventory(item);
-                            output+="Dinosaur is successfully fed";
-                            found=true;
-                            break;
+                            if(actor instanceof Player) {
+                                actor.removeItemFromInventory(item);
+                                ((Player) actor).gainEcoPoint(15);
+                                output+="Dinosaur is successfully fed";
+                                found=true;
+                                break;
+                            }
+
                         }
                        else
                         {
