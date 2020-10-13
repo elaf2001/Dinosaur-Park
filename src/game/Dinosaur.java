@@ -3,8 +3,6 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.lang.Math;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An abstract class that holds all the attributes and methods shared by any kind of the dinosaur.
@@ -182,6 +180,7 @@ public abstract class Dinosaur extends Actor {
      * just stands there.  That's boring.
      *
      * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+     * @return
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -197,10 +196,21 @@ public abstract class Dinosaur extends Actor {
         }
         if (isConscious()) {
             Action wander = behaviour.getAction(this, map);
+            if(this instanceof Stegosaur){
+                if (this.getFoodLevel() < 100){
+                    Location locationOfPlayer = map.locationOf(this);
+                    if(locationOfPlayer.getGround() instanceof GrassDirt){
+                        Action grazingGrass = ((GrassDirt) locationOfPlayer.getGround()).getGrazingGrassAction();
+                        if(grazingGrass != null){
+                            return grazingGrass;
+                        }
+                    }
+
+                }
+            }
             if (wander != null) {
                 return wander;
             }
-
         }
         return new DoNothingAction();
     }

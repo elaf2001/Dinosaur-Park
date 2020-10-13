@@ -3,8 +3,6 @@ package game;
 import edu.monash.fit2099.engine.*;
 import edu.monash.fit2099.interfaces.ActorInterface;
 
-import java.util.ArrayList;
-
 /**
  * Class representing the Player.
  */

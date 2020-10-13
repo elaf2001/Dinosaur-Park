@@ -14,6 +14,16 @@ public class VendingMachine extends Ground {
     }
 
     @Override
+    public boolean canActorEnter(Actor actor) {
+        return false;
+    }
+
+    @Override
+    public boolean blocksThrownObjects() {
+        return true;
+    }
+
+    @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
         return new Actions(new BuyItemAction(this));
     }

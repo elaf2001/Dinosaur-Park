@@ -21,6 +21,12 @@ public class GrassDirt extends Ground {
 		return null;
 	}
 
+	public GrazingGrassAction getGrazingGrassAction(){
+		if (displayChar == 'g'){
+			return new GrazingGrassAction(this);
+		}
+		return null;
+	}
 	/**
 	 * Calculates the probability based on the requirements and allows for the dirt to grow into grass.
 	 * These requirements are:

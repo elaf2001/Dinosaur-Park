@@ -1,6 +1,8 @@
 package game;
 
 
+import edu.monash.fit2099.engine.*;
+
 /**
  * A herbivorous dinosaur.
  *
@@ -17,5 +19,10 @@ public class Stegosaur extends Dinosaur {
 		this.foodLevel = foodLevel;
 	}
 
+	@Override
+	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 
+		return super.playTurn(actions, lastAction, map, display);
+
+	}
 }
