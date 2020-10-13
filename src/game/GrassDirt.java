@@ -14,14 +14,11 @@ public class GrassDirt extends Ground {
 		super('.');
 	}
 
-	@Override
-	public Actions allowableActions(Actor actor, Location location, String direction){
-		char ground = location.getDisplayChar();
-		Actions actions = new Actions();
-		if (ground == 'g'){
-			actions.add(new HarvestGrassAction(this));
+	public HarvestGrassAction getHarvestGrassAction(){
+		if (displayChar == 'g'){
+			return new HarvestGrassAction(this);
 		}
-		return actions;
+		return null;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package edu.monash.fit2099.engine;
 
 import game.BuyItemAction;
+import game.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -134,6 +135,8 @@ public class World {
 			// Game rule. If it's on the ground you can pick it up.
 			actions.add(item.getPickUpAction());
 		}
+
+
 		actions.add(new DoNothingAction());
 
 		Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);

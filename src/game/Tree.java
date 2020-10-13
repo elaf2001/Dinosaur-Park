@@ -1,9 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 
 public class Tree extends Ground {
 	private int age = 0;
@@ -12,10 +9,10 @@ public class Tree extends Ground {
 		super('+');
 	}
 
-	@Override
-	public Actions allowableActions(Actor actor, Location location, String direction){
-		return new Actions(new SearchTreeAction(this));
+	public SearchTreeAction getSearchTreeAction() {
+		return new SearchTreeAction(this);
 	}
+
 
 	@Override
 	public void tick(Location location) {
