@@ -68,11 +68,11 @@ public class VendingMachine extends Ground {
         }
         else if(playerChoice == '5')
         {
-            boughtItem=new AllosaurEgg("AG");
+            boughtItem=new StegosaurEgg("SG");
         }
         else if(playerChoice == '6')
         {
-            boughtItem=new StegosaurEgg("SG");
+            boughtItem=new AllosaurEgg("AG");
         }
         else if(playerChoice == '7')
         {

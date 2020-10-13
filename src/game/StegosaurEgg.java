@@ -14,6 +14,12 @@ public class StegosaurEgg extends EggItem{
         super(name, '0',10,200);
     }
 
+    @Override
+    public void increasePlayerPoints(Location location, int ecoPoints) {
+
+        super.increasePlayerPoints(location, ecoPoints);
+    }
+
     /**
      * This function will allow the egg to hatch by removing the egg item and adding
      * another dinosaur. The dinosaur added will be based on the type of egg. In this
@@ -22,6 +28,7 @@ public class StegosaurEgg extends EggItem{
      */
     public void hatchEgg(Location currentLocation){
         currentLocation.removeItem(this);
+        this.increasePlayerPoints(currentLocation,100);
         Stegosaur newStegosaur = new Stegosaur("Stegosaur", 10);
         currentLocation.addActor(newStegosaur);
     }

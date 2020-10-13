@@ -11,8 +11,11 @@ public class HarvestGrassAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         target.setDisplayChar('.');
-        HayItem hay = new HayItem();
-        actor.addItemToInventory(hay);
+        if(actor instanceof Player){
+            HayItem hay = new HayItem();
+            actor.addItemToInventory(hay);
+            ((Player) actor).gainEcoPoint(1);
+        }
         return menuDescription(actor);
     }
 

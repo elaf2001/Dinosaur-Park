@@ -3,6 +3,7 @@ package game;
 
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.PortableItem;
@@ -26,6 +27,21 @@ public abstract class EggItem extends FoodItem {
         super(name, displayChar, foodPoints,priceEcoPoints );
     }
 
+    public void increasePlayerPoints(Location location, int ecoPoints){
+        GameMap map = location.map();
+        Location[][] mapLocations = map.getMap();
+        for (int row = 0; row < mapLocations.length; row++) {
+            for (int col = 0; col < mapLocations[row].length; col++) {
+                Location possibleLocation = mapLocations[row][col];
+                if(possibleLocation.containsAnActor()){
+                    Actor actor = possibleLocation.getActor();
+                    if (actor instanceof Player){
+                        ((Player) actor).gainEcoPoint(ecoPoints);
+                    }
+                }
+            }
+        }
+    }
     /**
      * Updates the turn variable. when the turns reach 10, the dinosaur will lay the egg on the location it was in.
      * @param currentLocation The location of the actor carrying this Item.
@@ -38,11 +54,13 @@ public abstract class EggItem extends FoodItem {
          * This will add turns and after 10 turns the dinosaur (actor) will drop the egg from it is inventory
          */
         super.tick(currentLocation, actor);
-
-        turns++;
-        if (turns == 10){
-            getDropAction();
+        if(actor instanceof Dinosaur){
+            turns++;
+            if (turns == 10){
+                getDropAction();
+            }
         }
+
     }
 
     /**
