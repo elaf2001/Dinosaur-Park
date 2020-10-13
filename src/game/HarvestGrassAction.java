@@ -10,11 +10,10 @@ public class HarvestGrassAction extends Action {
     }
     @Override
     public String execute(Actor actor, GameMap map) {
-        Location locationOfActor = map.locationOf(actor);
         target.setDisplayChar('.');
         HayItem hay = new HayItem();
         actor.addItemToInventory(hay);
-        return "Grass harvested by the player";
+        return menuDescription(actor);
     }
 
     @Override

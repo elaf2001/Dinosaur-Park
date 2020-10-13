@@ -112,8 +112,7 @@ public class GrassDirt extends Ground {
 				location.getGround().setDisplayChar('g');
 			}
 		}
-		else
-		{
+		else if(location.getGround().getDisplayChar() != 'g'){
 			// if it is next to grass, it has 10% of growing into grass
 			if(isGrass){
 				if(Math.random()<=0.1){

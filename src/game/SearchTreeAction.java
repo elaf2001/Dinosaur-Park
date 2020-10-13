@@ -14,12 +14,15 @@ public class SearchTreeAction extends Action {
     }
     @Override
     public String execute(Actor actor, GameMap map) {
+        String output = menuDescription(actor);
         if(Math.random()<=0.4){
             FruitItem fruit = new FruitItem();
             actor.addItemToInventory(fruit);
-            return "You found a fruit!";
+            output+= "\n You found a fruit!";
+        } else{
+            output += "\n You search the tree for fruit, but you can't find ripe ones";
         }
-        return "You search the tree for fruit, but you can't find ripe ones";
+        return output;
     }
 
     @Override
