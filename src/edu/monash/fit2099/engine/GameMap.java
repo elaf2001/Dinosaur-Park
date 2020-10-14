@@ -304,10 +304,5 @@ public class GameMap {
 	public boolean contains(Actor actor) {
 		return actorLocations.contains(actor) && actorLocations.locationOf(actor).map() == this;
 	}
-	/** new
-	 * Function that returns the map location.
-	 */
-	public Location[][] getMap() {
-		return map;
-	}
+
 }

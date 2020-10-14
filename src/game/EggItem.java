@@ -1,9 +1,6 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.*;
 import game.PortableItem;
 
 /**
@@ -25,7 +22,7 @@ public abstract class EggItem extends FoodItem {
      * @param priceEcoPoints - price in eco points
      */
     public EggItem(String name, char displayChar, int foodPoints, int priceEcoPoints) {
-        super(name, displayChar, foodPoints,priceEcoPoints );
+        super(name, displayChar, foodPoints, priceEcoPoints );
     }
 
     /**
@@ -35,10 +32,12 @@ public abstract class EggItem extends FoodItem {
      */
     public void increasePlayerPoints(Location location, int ecoPoints){
         GameMap map = location.map();
+        NumberRange xRange = map.getXRange();
+        NumberRange yRange = map.getYRange();
         Location[][] mapLocations = map.getMap();
-        for (int row = 0; row < mapLocations.length; row++) {
-            for (int col = 0; col < mapLocations[row].length; col++) {
-                Location possibleLocation = mapLocations[row][col];
+        for (int x: xRange) {
+            for (int y: yRange) {
+                Location possibleLocation = mapLocations[x][y];
                 if(possibleLocation.containsAnActor()){
                     Actor actor = possibleLocation.getActor();
                     if (actor instanceof Player){

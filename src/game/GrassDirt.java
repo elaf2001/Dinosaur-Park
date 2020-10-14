@@ -50,10 +50,11 @@ public class GrassDirt extends Ground {
 	 */
 	public void increasePlayerPoints(Location location){
 		GameMap map = location.map();
-		Location[][] mapLocations = map.getMap();
-		for (int row = 0; row < mapLocations.length; row++) {
-			for (int col = 0; col < mapLocations[row].length; col++) {
-				Location possibleLocation = mapLocations[row][col];
+		NumberRange xRange = map.getXRange();
+		NumberRange yRange = map.getYRange();
+		for (int x: xRange) {
+			for (int y: yRange) {
+				Location possibleLocation = map.at(x,y);
 				if(possibleLocation.containsAnActor()){
 					Actor actor = possibleLocation.getActor();
 					if (actor instanceof Player){
