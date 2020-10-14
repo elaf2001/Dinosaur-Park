@@ -13,7 +13,6 @@ public class WanderBehaviour implements Behaviour {
 	
 	private Random random = new Random();
 
-
 	/**
 	 * Returns a MoveAction to wander to a random location, if possible.  
 	 * If no movement is possible, returns null.
@@ -32,14 +31,11 @@ public class WanderBehaviour implements Behaviour {
             	actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
             }
         }
-		
 		if (!actions.isEmpty()) {
 			return actions.get(random.nextInt(actions.size()));
 		}
 		else {
 			return null;
 		}
-
 	}
-
 }

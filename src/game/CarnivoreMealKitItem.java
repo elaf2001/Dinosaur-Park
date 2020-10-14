@@ -1,7 +1,13 @@
 package game;
 
 public class CarnivoreMealKitItem extends MealKitItem {
-    public CarnivoreMealKitItem(String name, char displayChar) {
-        super(name, displayChar, 500);
+
+    /**
+     * Constructor.
+     * @param name the name of the vegetarian meal kit
+     *
+     */
+    public CarnivoreMealKitItem(String name) {
+        super(name, '<', 500);
     }
 }

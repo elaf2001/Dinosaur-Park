@@ -17,5 +17,4 @@ public class Allosaur extends Dinosaur {
         super(name, 'a', 100);
     }
 
-    //has its own special behaviours that are including attack etc
 }

@@ -11,10 +11,8 @@ import java.lang.Math;
 public abstract class Dinosaur extends Actor {
 
 
-    protected int foodLevel; //not sure about the protected thingy
+    protected int foodLevel;
     private Behaviour behaviour;
-
-
     private String gender; //female or male
     private int age;
     private boolean is_alive=true;
@@ -170,16 +168,11 @@ public abstract class Dinosaur extends Actor {
     }
 
 
-    //actions and behaviours are not done
-
 
     /**
      * Figure out what to do next.
+     * Stegosaur wanders around at random,
      *
-     * FIXME: Stegosaur wanders around at random, or if no suitable MoveActions are available, it
-     * just stands there.  That's boring.
-     *
-     * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
      * @return
      */
     @Override

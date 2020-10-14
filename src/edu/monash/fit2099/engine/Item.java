@@ -18,7 +18,7 @@ public abstract class Item implements ItemInterface, Printable, Capable {
 	protected Actions allowableActions;
 	protected Capabilities capabilities = new Capabilities();
 
-	/***
+	/**
 	 * Constructor.
 	 * 
 	 * @param name the name of this Item

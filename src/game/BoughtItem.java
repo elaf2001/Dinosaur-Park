@@ -1,13 +1,25 @@
 package game;
 
 public class BoughtItem extends PortableItem{
+
     private int priceEcoPoints;
 
+    /**
+     * Constructor.
+     *
+     * @param name the name of this Item
+     * @param displayChar the character to use to represent this item if it is on the ground
+     * @param priceEcoPoints price in eco points to buy it from the vending machine
+     **/
     public BoughtItem(String name, char displayChar, int priceEcoPoints) {
         super(name, displayChar);
         this.priceEcoPoints= priceEcoPoints;
     }
 
+    /**
+     * Getter for the ecopoints
+     * @return price in ecopoints
+     */
     public int getPriceEcoPoints() {
         return priceEcoPoints;
     }

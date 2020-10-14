@@ -1,7 +1,5 @@
 package game;
 
-
-
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
@@ -15,6 +13,7 @@ import game.PortableItem;
  * Has two variables: turns and age
  */
 public abstract class EggItem extends FoodItem {
+
     private int turns = 0;
     private int age =0;
 
@@ -22,11 +21,18 @@ public abstract class EggItem extends FoodItem {
      * Constructor.
      * @param name - name of the egg
      * @param displayChar - Display character of the egg
+     * @param foodPoints - food points of the egg item
+     * @param priceEcoPoints - price in eco points
      */
     public EggItem(String name, char displayChar, int foodPoints, int priceEcoPoints) {
         super(name, displayChar, foodPoints,priceEcoPoints );
     }
 
+    /**
+     * Increases ecoPoints of the player when the egg hatches.
+     * @param location location of the item
+     * @param ecoPoints the amount of ecoPoints, that will be added to the player, when the egg hatches
+     */
     public void increasePlayerPoints(Location location, int ecoPoints){
         GameMap map = location.map();
         Location[][] mapLocations = map.getMap();
@@ -42,17 +48,10 @@ public abstract class EggItem extends FoodItem {
             }
         }
     }
-    /**
-     * Updates the turn variable. when the turns reach 10, the dinosaur will lay the egg on the location it was in.
-     * @param currentLocation The location of the actor carrying this Item.
-     * @param actor The actor carrying this Item.
-     */
+
 
     @Override
     public void tick(Location currentLocation, Actor actor) {
-        /**
-         * This will add turns and after 10 turns the dinosaur (actor) will drop the egg from it is inventory
-         */
         super.tick(currentLocation, actor);
         if(actor instanceof Dinosaur){
             turns++;
@@ -60,7 +59,6 @@ public abstract class EggItem extends FoodItem {
                 getDropAction();
             }
         }
-
     }
 
     /**

@@ -10,10 +10,19 @@ import java.util.Random;
  */
 public class GrassDirt extends Ground {
 
+	/**
+	 * Constructor.
+	 * Initially setting the square to "."
+	 */
 	public GrassDirt() {
 		super('.');
 	}
 
+	/**
+	 * Allows the player to harvest the grass
+	 *
+	 * @returns initialised harvest grass action
+	 */
 	public HarvestGrassAction getHarvestGrassAction(){
 		if (displayChar == 'g'){
 			return new HarvestGrassAction(this);
@@ -21,6 +30,11 @@ public class GrassDirt extends Ground {
 		return null;
 	}
 
+	/**
+	 * Allows the dinosaur to graze on the grass
+	 *
+	 * @returns initialised grazing grass action
+	 */
 	public GrazingGrassAction getGrazingGrassAction(){
 		if (displayChar == 'g'){
 			return new GrazingGrassAction(this);
@@ -28,6 +42,11 @@ public class GrassDirt extends Ground {
 		return null;
 	}
 
+	/**
+	 * Increases the amount of player's eco points by searching for all the players on the map
+	 *
+	 * @param location location where the player is standing
+	 */
 	public void increasePlayerPoints(Location location){
 		GameMap map = location.map();
 		Location[][] mapLocations = map.getMap();
@@ -43,6 +62,7 @@ public class GrassDirt extends Ground {
 			}
 		}
 	}
+
 	/**
 	 * Calculates the probability based on the requirements and allows for the dirt to grow into grass.
 	 * These requirements are:
@@ -66,49 +86,50 @@ public class GrassDirt extends Ground {
 			if(xLocation==0){
 				locations.add(mapLocations[xLocation + 1][yLocation]); //East
 				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-			}else if(xLocation >0 & xLocation <79){
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+			}
+			else
+			{
 				locations.add(mapLocations[xLocation-1][yLocation]); //West
 				locations.add(mapLocations[xLocation-1][yLocation+1]); //SouthWest
+				if(xLocation >0 & xLocation <79)
+				{
+					locations.add(mapLocations[xLocation + 1][yLocation]); //East
+					locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+				}
 			}
-			else {
-				locations.add(mapLocations[xLocation-1][yLocation]); //West
-				locations.add(mapLocations[xLocation-1][yLocation+1]); //SouthWest
-			}
-		} else if(yLocation == 24){
+		}
+		else if(yLocation == 24){
 			locations.add(mapLocations[xLocation][yLocation-1]); //North
 			if(xLocation==0){
 				locations.add(mapLocations[xLocation + 1][yLocation]); //East
 				locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
-			}else if(xLocation >0 & xLocation <79){
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-				locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
+			}
+			else
+			{
 				locations.add(mapLocations[xLocation-1][yLocation]); //West
 				locations.add(mapLocations[xLocation-1][yLocation-1]); //NorthWest
+				if(xLocation >0 & xLocation <79){
+					locations.add(mapLocations[xLocation + 1][yLocation]); //East
+					locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
+				}
 			}
-			else {
-				locations.add(mapLocations[xLocation-1][yLocation]); //West
-				locations.add(mapLocations[xLocation-1][yLocation-1]); //NorthWest
-			}
-		} else {
+		}
+		else {
 			locations.add(mapLocations[xLocation][yLocation + 1]); //South
 			locations.add(mapLocations[xLocation][yLocation - 1]); //North
 			if(xLocation == 0){
 				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
 				locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
 				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-			} else if (xLocation ==79){
-				locations.add(mapLocations[xLocation - 1][yLocation]); //West
-				locations.add(mapLocations[xLocation - 1][yLocation + 1]); //SouthWest
-				locations.add(mapLocations[xLocation - 1][yLocation - 1]); //NorthWest
 			} else {
-				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-				locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
 				locations.add(mapLocations[xLocation - 1][yLocation]); //West
 				locations.add(mapLocations[xLocation - 1][yLocation + 1]); //SouthWest
 				locations.add(mapLocations[xLocation - 1][yLocation - 1]); //NorthWest
+				if (xLocation != 79) {
+					locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
+					locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
+					locations.add(mapLocations[xLocation + 1][yLocation]); //East
+				}
 			}
 		}
 
@@ -143,7 +164,7 @@ public class GrassDirt extends Ground {
 					increasePlayerPoints(location);
 				}
 			}
-			//if there is neither tree, nor grass around it has 2% probability of growing
+			//if there is neither tree nor grass around it has 2% probability of growing
 			else{
 				if(Math.random()<=0.02){
 					location.getGround().setDisplayChar('g');

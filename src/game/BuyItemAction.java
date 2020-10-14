@@ -4,18 +4,24 @@ import edu.monash.fit2099.engine.*;
 
 public class BuyItemAction extends Action {
 
-    /**
-     * The Item to be bought
-     */
     protected VendingMachine vendingMachine;
 
-
+    /**
+     * Constructor.
+     * @param vendingMachine the vending machine that the player interacts with
+     */
     public BuyItemAction(VendingMachine vendingMachine)
     {
         this.vendingMachine=vendingMachine;
     }
 
-
+    /**
+     * Performs the Action, that allows the player to buy the item from the vending machine
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a description  that can be displayed to the user.
+     */
     public String execute(Actor actor, GameMap map) {
         String output = "";
         Item itemToBuy = vendingMachine.menuVendingMachine();
@@ -32,6 +38,11 @@ public class BuyItemAction extends Action {
         return output;
     }
 
+    /**
+     * Returns a descriptive string
+     * @param actor The actor performing the action.
+     * @return the text to put on the menu
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor+" buys from"+ " vending Machine";
