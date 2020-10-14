@@ -25,6 +25,10 @@ public abstract class EggItem extends FoodItem {
         super(name, displayChar, foodPoints, priceEcoPoints );
     }
 
+    @Override
+    public DropItemAction getDropAction() {
+        return new DropItemAction(this);
+    }
     /**
      * Increases ecoPoints of the player when the egg hatches.
      * @param location location of the item
@@ -34,10 +38,9 @@ public abstract class EggItem extends FoodItem {
         GameMap map = location.map();
         NumberRange xRange = map.getXRange();
         NumberRange yRange = map.getYRange();
-        Location[][] mapLocations = map.getMap();
         for (int x: xRange) {
             for (int y: yRange) {
-                Location possibleLocation = mapLocations[x][y];
+                Location possibleLocation = map.at(x,y);
                 if(possibleLocation.containsAnActor()){
                     Actor actor = possibleLocation.getActor();
                     if (actor instanceof Player){
@@ -52,10 +55,10 @@ public abstract class EggItem extends FoodItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         super.tick(currentLocation, actor);
-        if(actor instanceof Dinosaur){
-            turns++;
-            if (turns == 10){
-                getDropAction();
+        if(actor instanceof Dinosaur) {
+            turns+=1;
+            if (turns == 10) {
+                getDropAction().execute(actor, currentLocation.map());
             }
         }
     }

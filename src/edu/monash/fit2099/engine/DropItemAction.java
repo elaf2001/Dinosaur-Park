@@ -19,7 +19,7 @@ public class DropItemAction extends Action {
 	/**
 	 * Drop the item.
 	 *
-	 * @param player The actor performing the action
+	 * @param actor actor performing the action
 	 * @param map The map the actor is on
 	 * @return a description of the action suitable for feedback in the UI
 	 */

@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.lang.Math;
+import java.util.ArrayList;
 
 /**
  * An abstract class that holds all the attributes and methods shared by any kind of the dinosaur.
@@ -12,7 +13,7 @@ public abstract class Dinosaur extends Actor {
 
 
     protected int foodLevel;
-    private Behaviour behaviour;
+    private ArrayList<Behaviour> behaviours = new ArrayList();
     private String gender; //female or male
     private int age;
     private boolean is_alive=true;
@@ -29,7 +30,7 @@ public abstract class Dinosaur extends Actor {
     public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel) {
         super(name, displayChar, hitPoints);
         setGender();
-        behaviour = new WanderBehaviour();
+        behaviours.add(new WanderBehaviour());
         this.foodLevel = foodLevel;
     }
 
@@ -120,6 +121,7 @@ public abstract class Dinosaur extends Actor {
      */
     public void increaseAge() {
         this.age+=1;
+        behaviours.add(new BreedingBehaviour());
     }
 
     /**
@@ -193,7 +195,13 @@ public abstract class Dinosaur extends Actor {
             locationOfActor.addItem(corpse);
         }
         if (isConscious()) {
-            Action wander = behaviour.getAction(this, map);
+            if(this.getAge() >=30 && this.foodLevel>50){
+                Action breed = behaviours.get(1).getAction(this,map);
+                if(breed != null){
+                    return breed;
+                }
+            }
+            Action wander = behaviours.get(0).getAction(this,map);
             if (wander != null) {
                 return wander;
             }

@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 
 /**
@@ -16,6 +17,10 @@ public class StegosaurEgg extends EggItem{
         super(name, '0',10,200);
     }
 
+    @Override
+    public void tick(Location currentLocation, Actor actor){
+        super.tick(currentLocation, actor);
+    }
     /**
      * Overrides the method from the EggItem class, which increases ecoPoints of the player when the
      * egg hatches.
