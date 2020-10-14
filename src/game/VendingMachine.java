@@ -75,38 +75,43 @@ public class VendingMachine extends Ground {
         display.println("5. Stegosaur eggs  - 200 EP ");
         display.println("6. Allosaur eggs  - 1000 EP ");
         display.println("7. Laser gun - 500 EP \n");
-        char playerChoice=display.readChar();
-        if (playerChoice == '1'){
-            boughtItem=new HayItem();
-        }
-        else if(playerChoice == '2')
+        boolean check=true;
+        do
         {
-            boughtItem=new FruitItem();
-        }
-        else if(playerChoice == '3')
-        {
-            boughtItem=new VegetarianMealKitItem("VMK");
-        }
-        else if(playerChoice == '4')
-        {
-            boughtItem=new CarnivoreMealKitItem("CMK");
-        }
-        else if(playerChoice == '5')
-        {
-            boughtItem=new StegosaurEgg("SG");
-        }
-        else if(playerChoice == '6')
-        {
-            boughtItem=new AllosaurEgg("AG");
-        }
-        else if(playerChoice == '7')
-        {
-            boughtItem=new LaserGun();
-        }
-        else
-        {
-            return null;
-        }
-        return boughtItem;
+            char playerChoice=display.readChar();
+            if (playerChoice == '1'){
+                return boughtItem=new HayItem();
+            }
+            else if(playerChoice == '2')
+            {
+                return boughtItem=new FruitItem();
+            }
+            else if(playerChoice == '3')
+            {
+                return boughtItem=new VegetarianMealKitItem("VMK");
+            }
+            else if(playerChoice == '4')
+            {
+                return boughtItem=new CarnivoreMealKitItem("CMK");
+            }
+            else if(playerChoice == '5')
+            {
+                return boughtItem=new StegosaurEgg("SG");
+            }
+            else if(playerChoice == '6')
+            {
+                return boughtItem=new AllosaurEgg("AG");
+            }
+            else if(playerChoice == '7')
+            {
+                return boughtItem=new LaserGun();
+            }
+            else
+            {
+                check=false;
+            }
+        } while (!check);
+
+        return null;
     }
 }
