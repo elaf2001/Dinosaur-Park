@@ -17,8 +17,12 @@ public class Stegosaur extends Dinosaur {
 	 * @param foodLevel food level of the Stegosaur when it is initialised
 	 */
 	public Stegosaur(String name, int foodLevel) {
-		super(name, 's', 100);
-		this.foodLevel = foodLevel;
+		super(name, 's', 100, foodLevel);
+
+	}
+
+	public AttackAction getAttackAction(Allosaur actor){
+		return new AttackAction(this);
 	}
 
 	/**
@@ -32,6 +36,18 @@ public class Stegosaur extends Dinosaur {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if (isConscious()) {
+
+			if (this.getFoodLevel() < 100) {
+				Location locationOfPlayer = map.locationOf(this);
+				if (locationOfPlayer.getGround() instanceof GrassDirt) {
+					Action grazingGrass = ((GrassDirt) locationOfPlayer.getGround()).getGrazingGrassAction();
+					if (grazingGrass != null) {
+						return grazingGrass;
+					}
+				}
+			}
+		}
 		return super.playTurn(actions, lastAction, map, display);
 	}
 }

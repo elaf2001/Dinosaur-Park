@@ -26,16 +26,21 @@ public abstract class Dinosaur extends Actor {
      * @param displayChar Character to represent the dinosaur in the UI
      * @param hitPoints   Dinosaur's starting number of hitpoints
      */
-    public Dinosaur(String name, char displayChar, int hitPoints) {
+    public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel) {
         super(name, displayChar, hitPoints);
         setGender();
         behaviour = new WanderBehaviour();
+        this.foodLevel = foodLevel;
     }
 
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
-        Actions actions = new Actions(new AttackAction(this));
-        actions.add(new FeedAction(this));
+        Actions actions = new Actions(new FeedAction(this));
+        if (otherActor instanceof Player){
+            actions.add(new AttackAction(this));
+        } else if(otherActor instanceof Allosaur && this instanceof Stegosaur){
+            actions.add(new AttackAction(this));
+        }
         return actions;
     }
 
@@ -181,7 +186,7 @@ public abstract class Dinosaur extends Actor {
         decreaseFoodLevel();
         increaseAge();
         countToDie();
-        if (is_alive == false) {
+        if (!is_alive) {
             Location locationOfActor = map.locationOf(this);
             map.removeActor(this);
             Item corpse = new PortableItem("dead " + this, '%');
@@ -189,18 +194,6 @@ public abstract class Dinosaur extends Actor {
         }
         if (isConscious()) {
             Action wander = behaviour.getAction(this, map);
-            if(this instanceof Stegosaur){
-                if (this.getFoodLevel() < 100){
-                    Location locationOfPlayer = map.locationOf(this);
-                    if(locationOfPlayer.getGround() instanceof GrassDirt){
-                        Action grazingGrass = ((GrassDirt) locationOfPlayer.getGround()).getGrazingGrassAction();
-                        if(grazingGrass != null){
-                            return grazingGrass;
-                        }
-                    }
-
-                }
-            }
             if (wander != null) {
                 return wander;
             }

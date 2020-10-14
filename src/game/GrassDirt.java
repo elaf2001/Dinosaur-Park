@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -74,72 +75,13 @@ public class GrassDirt extends Ground {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-		int xLocation = location.x();
-		int yLocation = location.y();
-		GameMap gameMap = location.map();
-		Location[][] mapLocations = gameMap.getMap();
-		// Checking
-		ArrayList<Location> locations = new ArrayList<>();
-
-		if (yLocation == 0) {
-			locations.add(mapLocations[xLocation][yLocation + 1]); //South
-			if(xLocation==0){
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-			}
-			else
-			{
-				locations.add(mapLocations[xLocation-1][yLocation]); //West
-				locations.add(mapLocations[xLocation-1][yLocation+1]); //SouthWest
-				if(xLocation >0 & xLocation <79)
-				{
-					locations.add(mapLocations[xLocation + 1][yLocation]); //East
-					locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-				}
-			}
-		}
-		else if(yLocation == 24){
-			locations.add(mapLocations[xLocation][yLocation-1]); //North
-			if(xLocation==0){
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-				locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
-			}
-			else
-			{
-				locations.add(mapLocations[xLocation-1][yLocation]); //West
-				locations.add(mapLocations[xLocation-1][yLocation-1]); //NorthWest
-				if(xLocation >0 & xLocation <79){
-					locations.add(mapLocations[xLocation + 1][yLocation]); //East
-					locations.add(mapLocations[xLocation+1][yLocation-1]); //NorthEast
-				}
-			}
-		}
-		else {
-			locations.add(mapLocations[xLocation][yLocation + 1]); //South
-			locations.add(mapLocations[xLocation][yLocation - 1]); //North
-			if(xLocation == 0){
-				locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-				locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
-				locations.add(mapLocations[xLocation + 1][yLocation]); //East
-			} else {
-				locations.add(mapLocations[xLocation - 1][yLocation]); //West
-				locations.add(mapLocations[xLocation - 1][yLocation + 1]); //SouthWest
-				locations.add(mapLocations[xLocation - 1][yLocation - 1]); //NorthWest
-				if (xLocation != 79) {
-					locations.add(mapLocations[xLocation + 1][yLocation + 1]); //SouthEast
-					locations.add(mapLocations[xLocation + 1][yLocation - 1]); //NorthEast
-					locations.add(mapLocations[xLocation + 1][yLocation]); //East
-				}
-			}
-		}
-
+		List<Exit> exits =location.getExits();
 		boolean isTree=false;
 		boolean isGrass=false;
-		// checking the arrays surrounding the grass location
-		for(Location place: locations){
-			Ground ground = place.getGround();
-			//counter for tree changes if there is a tree around
-			if (ground.getDisplayChar() == '+' || ground.getDisplayChar() == 't' || ground.getDisplayChar() == 'T' || ground.getDisplayChar() == 'f')
+		for (Exit exit :exits){
+			Location nextTo = exit.getDestination();
+			Ground ground = nextTo.getGround();
+			if (ground instanceof Tree)
 			{
 				isTree=true;
 			}
@@ -148,7 +90,6 @@ public class GrassDirt extends Ground {
 				isGrass=true;
 			}
 		}
-		// if it is next to a tree, it only has 2% of growing into grass
 		if (isTree){
 			if(Math.random()<=0.02)
 			{
