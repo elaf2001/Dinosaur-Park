@@ -7,16 +7,7 @@ import java.util.List;
 
 public class BreedingBehaviour implements Behaviour  {
 
-//    private Dinosaur target;
 
-//    /**
-//     * Constructor.
-//     *
-//     * @param subject the Actor to follow
-//     */
-//    public BreedingBehaviour() {
-//        this.target=subject;
-//    }
 
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur target;
@@ -52,17 +43,6 @@ public class BreedingBehaviour implements Behaviour  {
             }
         }
         return null;
-    }
-
-    /**
-     * Compute the Manhattan distance between two locations.
-     *
-     * @param a the first location
-     * @param b the first location
-     * @return the number of steps between a and b if you only move in the four cardinal directions.
-     */
-    private int distance(Location a, Location b) {
-        return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
 }

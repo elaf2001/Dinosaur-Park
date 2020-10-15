@@ -191,7 +191,7 @@ public abstract class Dinosaur extends Actor {
         if (!is_alive) {
             Location locationOfActor = map.locationOf(this);
             map.removeActor(this);
-            Item corpse = new PortableItem("dead " + this, '%');
+            Item corpse = new CorpseItem();
             locationOfActor.addItem(corpse);
         }
         if (isConscious()) {
