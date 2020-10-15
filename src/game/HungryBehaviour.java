@@ -43,7 +43,6 @@ public class HungryBehaviour implements Behaviour {
             for (Location i : locations) {
                 distances.add(distance(locationOfActor,i));
             }
-            System.out.println(distances.size());
             //finding the minimum value
             int minIndex = distances.indexOf(Collections.min(distances));
             //getting the minimum location
