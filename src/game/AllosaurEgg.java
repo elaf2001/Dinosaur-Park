@@ -1,7 +1,11 @@
 package game;
 
 
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
+
+import java.util.List;
+
 /**
  * Class that represents the Allosaur eggs in the system. It is the child class of {EggItem}.
  */
@@ -36,6 +40,17 @@ public class AllosaurEgg extends EggItem{
         currentLocation.removeItem(this);
         this.increasePlayerPoints(currentLocation,1000);
         Allosaur newAllosaur = new Allosaur("Allosaur");
-        currentLocation.addActor(newAllosaur);
+        if(currentLocation.containsAnActor()){
+            List<Exit> exits = currentLocation.getExits();
+            for(Exit exit: exits){
+                Location newLoc = exit.getDestination();
+                if(!newLoc.containsAnActor()){
+                    newLoc.addActor(newAllosaur);
+                }
+            }
+        }else{
+            currentLocation.addActor(newAllosaur);
+        }
+
     }
 }

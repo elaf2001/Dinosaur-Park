@@ -1,7 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
+
+import java.util.List;
 
 /**
  * Class that represents the Stegosaur eggs in the system. It is the child class of {EggItem}.
@@ -42,6 +45,16 @@ public class StegosaurEgg extends EggItem{
         currentLocation.removeItem(this);
         this.increasePlayerPoints(currentLocation,100);
         Stegosaur newStegosaur = new Stegosaur("Stegosaur", 10);
-        currentLocation.addActor(newStegosaur);
+        if(currentLocation.containsAnActor()){
+            List<Exit> exits = currentLocation.getExits();
+            for(Exit exit: exits){
+                Location newLoc = exit.getDestination();
+                if(!newLoc.containsAnActor()){
+                    newLoc.addActor(newStegosaur);
+                }
+            }
+        }else{
+            currentLocation.addActor(newStegosaur);
+        }
     }
 }

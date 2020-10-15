@@ -31,6 +31,7 @@ public abstract class Dinosaur extends Actor {
         super(name, displayChar, hitPoints);
         setGender();
         behaviours.add(new WanderBehaviour());
+        behaviours.add(new HungryBehaviour());
         this.foodLevel = foodLevel;
     }
 
@@ -121,7 +122,9 @@ public abstract class Dinosaur extends Actor {
      */
     public void increaseAge() {
         this.age+=1;
-        behaviours.add(new BreedingBehaviour());
+        if(this.age == 30){
+            behaviours.add(new BreedingBehaviour());
+        }
     }
 
     /**
@@ -188,6 +191,7 @@ public abstract class Dinosaur extends Actor {
         decreaseFoodLevel();
         increaseAge();
         countToDie();
+
         if (!is_alive) {
             Location locationOfActor = map.locationOf(this);
             map.removeActor(this);
@@ -195,8 +199,16 @@ public abstract class Dinosaur extends Actor {
             locationOfActor.addItem(corpse);
         }
         if (isConscious()) {
+            if(this.foodLevel <30){
+                Action hungry = behaviours.get(1).getAction(this, map);
+                if(hungry != null){
+                    return hungry;
+                } else{
+                    System.out.println(this + "at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
+                }
+            }
             if(this.getAge() >=30 && this.foodLevel>50){
-                Action breed = behaviours.get(1).getAction(this,map);
+                Action breed = behaviours.get(2).getAction(this,map);
                 if(breed != null){
                     return breed;
                 }

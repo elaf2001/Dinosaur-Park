@@ -7,9 +7,9 @@ import java.util.LinkedHashMap;
 
 public class FollowFoodBehaviour implements Behaviour{
 
-    private LinkedHashMap locations;
-    public FollowFoodBehaviour(LinkedHashMap nearbyLocations){
-        this.locations = nearbyLocations;
+    private Location location;
+    public FollowFoodBehaviour(Location minLoc){
+        this.location = minLoc;
     }
 
 
@@ -19,21 +19,20 @@ public class FollowFoodBehaviour implements Behaviour{
             return null;
 
         Location here = map.locationOf(actor);
-        if (!locations.isEmpty()) {
-            int currentDistance = distance(here, (Location) locations.values().toArray()[0]);
-            for (Exit exit : here.getExits()) {
-                Location destination = exit.getDestination();
-                if (destination.canActorEnter(actor)) {
-                    int newDistance = distance(destination, this.location);
-                    if (newDistance < currentDistance) {
-                        return new MoveActorAction(destination, exit.getName());
-                    }
+        int currentDistance = distance(here, this.location);
+        for (Exit exit : here.getExits()) {
+            Location destination = exit.getDestination();
+            if (destination.canActorEnter(actor)) {
+                int newDistance = distance(destination, this.location);
+                if (newDistance < currentDistance) {
+                    return new MoveActorAction(destination, exit.getName());
                 }
             }
         }
-
         return null;
     }
+
+
 
     /**
      * Compute the Manhattan distance between two locations.
