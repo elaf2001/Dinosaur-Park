@@ -44,8 +44,9 @@ public class AllosaurEgg extends EggItem{
             List<Exit> exits = currentLocation.getExits();
             for(Exit exit: exits){
                 Location newLoc = exit.getDestination();
-                if(!newLoc.containsAnActor()){
+                if(newLoc.canActorEnter(newAllosaur) && !newLoc.containsAnActor()){
                     newLoc.addActor(newAllosaur);
+                    break;
                 }
             }
         }else{

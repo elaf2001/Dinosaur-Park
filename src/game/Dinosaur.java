@@ -201,10 +201,9 @@ public abstract class Dinosaur extends Actor {
         if (isConscious()) {
             if(this.foodLevel <30){
                 Action hungry = behaviours.get(1).getAction(this, map);
+                System.out.println(this + "at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
                 if(hungry != null){
                     return hungry;
-                } else{
-                    System.out.println(this + "at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
                 }
             }
             if(this.getAge() >=30 && this.foodLevel>50){

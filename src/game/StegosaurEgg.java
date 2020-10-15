@@ -49,8 +49,9 @@ public class StegosaurEgg extends EggItem{
             List<Exit> exits = currentLocation.getExits();
             for(Exit exit: exits){
                 Location newLoc = exit.getDestination();
-                if(!newLoc.containsAnActor()){
+                if(newLoc.canActorEnter(newStegosaur) && !newLoc.containsAnActor()){
                     newLoc.addActor(newStegosaur);
+                    break;
                 }
             }
         }else{
