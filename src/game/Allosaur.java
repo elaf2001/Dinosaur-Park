@@ -17,7 +17,7 @@ public class Allosaur extends Dinosaur {
      * @param name the name of this Allosaur
      */
     public Allosaur(String name) {
-        super(name, 'a', 100, 10);
+        super(name, 'a', 100, 10,0);
     }
 
     /**

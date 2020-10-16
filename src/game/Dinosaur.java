@@ -27,12 +27,13 @@ public abstract class Dinosaur extends Actor {
      * @param hitPoints   Dinosaur's starting number of hitpoints
      * @param foodLevel   level of food, when the dinosaur appears on the map
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel) {
+    public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel, int age) {
         super(name, displayChar, hitPoints);
         setGender();
         behaviours.add(new WanderBehaviour());
         behaviours.add(new HungryBehaviour());
         this.foodLevel = foodLevel;
+        this.age = age;
     }
 
     /**
@@ -205,8 +206,6 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        System.out.println(this.getFoodLevel());
-        System.out.println(this.getGender());
         decreaseFoodLevel();
         increaseAge();
         countToDie();
