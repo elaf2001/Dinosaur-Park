@@ -20,15 +20,6 @@ public class Stegosaur extends Dinosaur {
 		super(name, 's', 100, foodLevel);
 	}
 
-	/**
-	 * Allows an actor to attack this Stegosaur.
-	 *
-	 * @param actor the actor that will attack the following dinosaur
-	 * @return performing an attack action
-	 */
-	public AttackAction getAttackAction(Allosaur actor){
-		return new AttackAction(this);
-	}
 
 	/**
 	 * Select and return an action to perform on the current turn.

@@ -15,7 +15,7 @@ public abstract class Dinosaur extends Actor {
     private int age;
     private boolean is_alive=true;
     private int turn=0;
-    private int hitPoints=100;
+
 
     /**
      * Constructor.
@@ -76,13 +76,6 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
-    /**
-     * Returns whether the dinosaur is alive
-     */
-    public boolean getIs_alive() {
-        return is_alive;
-    }
-
 
     /**
      * Decreases dinosaur food level by 1
@@ -90,17 +83,19 @@ public abstract class Dinosaur extends Actor {
      */
     public void decreaseFoodLevel()
     {
-        this.foodLevel-=1;
+        if(this.foodLevel >0) {
+            this.foodLevel -= 1;
+        }
     }
 
     /**
-     * Decreases dinosaurs hit points by the amount passed as a parameter.
-     * This method is called, if the dinosaur is attacked by another actor.
-     * @param damage the damage that dinosaur gets from the attack
+     * Decreases dinosaur food level by 1
+     * This method is called once per turn, if the food level of the dinosaur is more than 0 and the dinosaur is alive.
      */
-    public void decreaseHitPoints(int damage)
-    {
-        this.hitPoints-=damage;
+    public void increasingFoodLevel(int increment)
+    {   if (this.foodLevel <100){
+            this.foodLevel+=increment;
+        }
     }
 
     /**
@@ -122,7 +117,7 @@ public abstract class Dinosaur extends Actor {
             else {
                 int increment = food.getFoodPoints();
                 if (increment < 100 - foodLevel) {
-                    this.foodLevel += increment;
+                    this.increasingFoodLevel(increment);
                 } else {
                     this.foodLevel = 100;
                 }
@@ -208,6 +203,7 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+        System.out.println(this.getFoodLevel());
         decreaseFoodLevel();
         increaseAge();
         countToDie();
@@ -216,14 +212,17 @@ public abstract class Dinosaur extends Actor {
             map.removeActor(this);
             Item corpse = new CorpseItem();
             locationOfActor.addItem(corpse);
+            if(this.foodLevel <0){
+                System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
+            }
         }
         if (isConscious()) {
             if(this.foodLevel <30){
                 Action hungry = behaviours.get(1).getAction(this, map);
-                System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
                 if(hungry != null){
                     return hungry;
                 }
+                System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
             }
             if(this.getAge() >=30 && this.foodLevel>50){
                 Action breed = behaviours.get(2).getAction(this,map);

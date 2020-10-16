@@ -32,8 +32,7 @@ public class GrazingGrassAction extends Action {
     public String execute(Actor actor, GameMap map) {
         target.setDisplayChar('.');
         if (actor instanceof Stegosaur) {
-            HayItem hay = new HayItem();
-            ((Stegosaur) actor).eat(hay);
+            ((Stegosaur) actor).increasingFoodLevel(5);
         }
         return menuDescription(actor);
     }
