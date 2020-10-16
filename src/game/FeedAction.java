@@ -48,6 +48,7 @@ public class FeedAction extends Action {
                         if (item instanceof HayItem) {
                             actor.removeItemFromInventory(item);
                             ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;
@@ -56,6 +57,7 @@ public class FeedAction extends Action {
                         if (item instanceof FruitItem) {
                             actor.removeItemFromInventory(item);
                             ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;
@@ -63,7 +65,7 @@ public class FeedAction extends Action {
                     } else if (playerChoice == '3') {
                         if (item instanceof VegetarianMealKitItem) {
                             actor.removeItemFromInventory(item);
-                            ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;
@@ -84,7 +86,7 @@ public class FeedAction extends Action {
                     if (playerChoice == '4') {
                         if (item instanceof CarnivoreMealKitItem) {
                             actor.removeItemFromInventory(item);
-                            ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;
@@ -92,7 +94,7 @@ public class FeedAction extends Action {
                     } else if (playerChoice == '5') {
                         if (item instanceof StegosaurEgg) {
                             actor.removeItemFromInventory(item);
-                            ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;
@@ -100,7 +102,7 @@ public class FeedAction extends Action {
                     } else if (playerChoice == '6') {
                         if (item instanceof AllosaurEgg) {
                             actor.removeItemFromInventory(item);
-                            ((Player) actor).gainEcoPoint(10);
+                            target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
                             break;

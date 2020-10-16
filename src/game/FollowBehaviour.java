@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.*;
 public class FollowBehaviour implements Behaviour {
 
 	private Actor target;
+//    private Location location;
 
 	/**
 	 * Constructor.
