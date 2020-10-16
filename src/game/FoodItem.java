@@ -1,14 +1,21 @@
 package game;
 
+/**
+ * FoodItem class represents items that can be eaten by Dinosaurs
+ * It has foodPoints attribute, which represents its food points, that the
+ * dinosaur gains if eats the following food item.
+ */
 public abstract class FoodItem extends BoughtItem {
 
     private int foodPoints;
 
     /**
-     * Constructor for the StegosaurEgg
-     * All Stegosaurs eggs are represented by a '0' and have 10 food points and 200 eco points price.
-     * @param name The name of the Stegosaur Egg
-     */
+     * Constructor.
+     * @param name the name of this Item
+     * @param displayChar the character to use to represent this item if it is on the ground
+     * @param foodPoints amount of food points the dinosaur gains if it eats the following item
+     * @param priceEcoPoints price in eco points to buy it from the vending machine
+     **/
     public FoodItem(String name, char displayChar, int foodPoints, int priceEcoPoints ) {
         super(name, displayChar, priceEcoPoints);
         this.foodPoints=foodPoints;
@@ -31,6 +38,4 @@ public abstract class FoodItem extends BoughtItem {
     {
         return this.name;
     }
-
-
 }

@@ -2,6 +2,12 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class that represent the tree.
+ * Tree has an attribute age, which is representing how
+ * long the tree has been growing and changes its display character based
+ * on that.
+ */
 public class Tree extends Ground {
 
 	private int age = 0;

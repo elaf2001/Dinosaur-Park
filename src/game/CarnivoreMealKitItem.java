@@ -1,10 +1,14 @@
 package game;
 
+/**
+ * Class that represent the carnivore meal kit, that can be eaten by carnivore actors.
+ */
 public class CarnivoreMealKitItem extends MealKitItem {
 
     /**
      * Constructor.
-     * @param name the name of the vegetarian meal kit
+     * Carnivore meal kits are represented by a '<' and have 500 eco points price.
+     * @param name the name of the carnivore meal kit
      *
      */
     public CarnivoreMealKitItem(String name) {

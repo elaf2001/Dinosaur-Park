@@ -4,6 +4,11 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 
+/**
+ * The class that represents the search tree for fruit action
+ * target is an attribute that represents the tree to be searched.
+ */
+
 public class SearchTreeAction extends Action {
 
     private Ground target;

@@ -2,13 +2,18 @@ package game;
 
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Class that is responsible for initialising the fruit item.
+ * It has an attribute turns, which shows how long the fruit
+ * has been lying on the ground.
+ **/
 public class FruitItem extends FoodItem {
 
     private int turns = 0;
 
     /**
      * Constructor.
-     * All fruits are represented by 'F', have the name 'fruit', food point of 30 and price of 30 in eco points.
+     * All fruits are represented by 'F', have the name 'fruit', food points of 30 and price of 30 in eco points.
      */
     public FruitItem() {
         super("Fruit", 'F',30, 30);

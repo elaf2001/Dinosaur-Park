@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Class that allows the user to buy from vending machine
+ */
 public class BuyItemAction extends Action {
 
     protected VendingMachine vendingMachine;

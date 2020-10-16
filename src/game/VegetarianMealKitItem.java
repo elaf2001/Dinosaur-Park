@@ -1,5 +1,8 @@
 package game;
 
+/**
+ * Class that represent the vegetarian meal kit, that can be eaten by vegetarian actors.
+ */
 public class VegetarianMealKitItem extends MealKitItem {
 
     /**

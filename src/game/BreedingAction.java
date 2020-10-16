@@ -5,20 +5,28 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
+
+/**
+ * Class that allows dinosaurs to breed
+ * target is a dinosaur that the actor dinosaur will breed with
+ */
 public class BreedingAction extends Action {
+
     protected Dinosaur target;
 
-
+    /**
+     * Constructor.
+     *
+     * @param target the Dinosaur to breed with
+     */
     public BreedingAction(Dinosaur target) {
         this.target=target;
     }
 
 
     /**
-     * Allow the Actor to be moved.
-     *
-     * Overrides Action.execute()
-     *
+     * Checks if the dinosaurs are of the same kind, proper age and a food level
+     * Finds the female dinosaur and adds the agg to its inventory
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a description of the Action suitable for the menu

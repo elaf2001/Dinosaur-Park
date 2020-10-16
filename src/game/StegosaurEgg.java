@@ -20,10 +20,18 @@ public class StegosaurEgg extends EggItem{
         super(name, '0',10,200);
     }
 
+    /**
+     * Inform a carried Item of the passage of time.
+     *
+     * This method is called once per turn, if the Item is being carried.
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor){
         super.tick(currentLocation, actor);
     }
+
     /**
      * Overrides the method from the EggItem class, which increases ecoPoints of the player when the
      * egg hatches.
@@ -36,9 +44,10 @@ public class StegosaurEgg extends EggItem{
     }
 
     /**
-     * This function will allow the egg to hatch by removing the egg item and adding a
-     * dinosaur. The dinosaur added will be based on the type of egg. In this
-     * scenario it is Stegosaur
+     * This function allows the egg to hatch by removing the egg item and adding
+     * a new Stegosaur.
+     * If there is an actor standing on the location of the egg, it will
+     * hatch to the nearest empty location.
      * @param currentLocation the current location of the egg.
      */
     public void hatchEgg(Location currentLocation){
@@ -54,7 +63,8 @@ public class StegosaurEgg extends EggItem{
                     break;
                 }
             }
-        }else{
+        }
+        else{
             currentLocation.addActor(newStegosaur);
         }
     }

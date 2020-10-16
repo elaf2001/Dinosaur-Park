@@ -5,10 +5,16 @@ import edu.monash.fit2099.engine.*;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A class that finds the nearest dinosaur to breed and follows it.
+ * When target and actor are in adjacent cells, they mate
+ */
 public class BreedingBehaviour implements Behaviour  {
-
-
-
+   /** Searches for the nearest dinosaur of the opposite gender, same kind as an actor and with no egg in its inventory
+    * and if there is one found, moves towards it.
+    * If the target dinosaur and actor are in the adjacent cells, they perform a breed action.
+    * If no dinosaur is found, returns null.
+    */
     public Action getAction(Actor actor, GameMap map) {
         Dinosaur target;
         if(!map.contains(actor))
@@ -36,7 +42,6 @@ public class BreedingBehaviour implements Behaviour  {
                                     return new FollowBehaviour(target).getAction(actor,map);
                                 }
                             }
-
                         }
                     }
                 }
@@ -44,6 +49,5 @@ public class BreedingBehaviour implements Behaviour  {
         }
         return null;
     }
-
 }
 

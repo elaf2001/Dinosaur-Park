@@ -5,15 +5,29 @@ import edu.monash.fit2099.engine.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * A class that figures out a MoveAction that will move the actor one step
+ * closer to a target Actor.
+ */
 public class FollowFoodBehaviour implements Behaviour{
 
     private Location location;
+
+    /**
+     * Constructor.
+     *
+     * @param minLoc the location of the food item to follow
+     */
     public FollowFoodBehaviour(Location minLoc){
         this.location = minLoc;
     }
 
-
-
+    /**
+     * Chooses the shortest path to move towards the chosen location
+     * @param actor the Actor acting
+	 * @param map the GameMap containing the Actor
+	 * @return an Action that actor can perform, or null if actor can't do this.
+     **/
     public Action getAction(Actor actor, GameMap map) {
         if (!map.contains(actor))
             return null;
@@ -31,8 +45,6 @@ public class FollowFoodBehaviour implements Behaviour{
         }
         return null;
     }
-
-
 
     /**
      * Compute the Manhattan distance between two locations.

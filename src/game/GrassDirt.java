@@ -22,7 +22,8 @@ public class GrassDirt extends Ground {
 	/**
 	 * Allows the player to harvest the grass
 	 *
-	 * @returns initialised harvest grass action
+	 * @return if the cell is grass it returns initialised harvest grass action
+	 * otherwise returns null
 	 */
 	public HarvestGrassAction getHarvestGrassAction(){
 		if (displayChar == 'g'){
@@ -34,7 +35,8 @@ public class GrassDirt extends Ground {
 	/**
 	 * Allows the dinosaur to graze on the grass
 	 *
-	 * @returns initialised grazing grass action
+	 * @return if the cell is grass it returns initialised graze on grass action
+	 * 	otherwise returns null
 	 */
 	public GrazingGrassAction getGrazingGrassAction(){
 		if (displayChar == 'g'){
@@ -44,7 +46,7 @@ public class GrassDirt extends Ground {
 	}
 
 	/**
-	 * Increases the amount of player's eco points by searching for all the players on the map
+	 * Increases the amount of player's eco points by searching for all the players on the map.
 	 *
 	 * @param location location where the player is standing
 	 */
@@ -78,7 +80,7 @@ public class GrassDirt extends Ground {
 		super.tick(location);
 		List<Exit> exits =location.getExits();
 		boolean isTree=false;
-		boolean isGrass=false;
+		int grassCounter=0;
 		for (Exit exit :exits){
 			Location nextTo = exit.getDestination();
 			Ground ground = nextTo.getGround();
@@ -88,29 +90,32 @@ public class GrassDirt extends Ground {
 			}
 			//counter for grass changes if there is grass around
 			else if(ground.getDisplayChar()== 'g') {
-				isGrass=true;
+				grassCounter+=1;
 			}
 		}
-		if (isTree){
-			if(Math.random()<=0.02)
-			{
-				location.getGround().setDisplayChar('g');
-				increasePlayerPoints(location);
-			}
-		}
-		else if(location.getGround().getDisplayChar() != 'g'){
-			// if it is next to grass, it has 10% of growing into grass
-			if(isGrass){
-				if(Math.random()<=0.1){
+		if(location.getGround().getDisplayChar() != 'g')
+		{
+			if (isTree){
+				if(Math.random()<=0.02)
+				{
 					location.getGround().setDisplayChar('g');
 					increasePlayerPoints(location);
 				}
 			}
-			//if there is neither tree nor grass around it has 2% probability of growing
-			else{
-				if(Math.random()<=0.02){
-					location.getGround().setDisplayChar('g');
-					increasePlayerPoints(location);
+			else
+			{
+				if(grassCounter>=2){
+					if(Math.random()<=0.1){
+						location.getGround().setDisplayChar('g');
+						increasePlayerPoints(location);
+					}
+				}
+				//if there is neither tree nor grass around it has 2% probability of growing
+				else{
+					if(Math.random()<=0.02){
+						location.getGround().setDisplayChar('g');
+						increasePlayerPoints(location);
+					}
 				}
 			}
 		}

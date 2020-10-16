@@ -5,6 +5,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 
+/**
+ *  Special action that can be performed by the dinosaur for eating grass
+ *  target is the cell of GrassDirt that the dinosaur can graze on.
+ */
 public class GrazingGrassAction extends Action {
 
     protected Ground target;

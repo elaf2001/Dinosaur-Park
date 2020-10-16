@@ -3,6 +3,11 @@ package game;
 import edu.monash.fit2099.engine.Weapon;
 import edu.monash.fit2099.engine.WeaponItem;
 
+/**
+ * The class that represents the laser gun.
+ * It is sold in the vending machine and therefore it has
+ * PRICE_ECO_POINTS attribute.
+ **/
 public class LaserGun extends WeaponItem implements Weapon {
 
     private final int PRICE_ECO_POINTS = 500;

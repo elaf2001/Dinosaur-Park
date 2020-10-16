@@ -1,5 +1,8 @@
 package game;
 
+/**
+ * Abstract base class representing a meal kit item.
+ **/
 public abstract class MealKitItem extends FoodItem {
 
     /**

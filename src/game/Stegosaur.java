@@ -18,15 +18,22 @@ public class Stegosaur extends Dinosaur {
 	 */
 	public Stegosaur(String name, int foodLevel) {
 		super(name, 's', 100, foodLevel);
-
 	}
 
+	/**
+	 * Allows an actor to attack this Stegosaur.
+	 *
+	 * @param actor the actor that will attack the following dinosaur
+	 * @return performing an attack action
+	 */
 	public AttackAction getAttackAction(Allosaur actor){
 		return new AttackAction(this);
 	}
 
 	/**
 	 * Select and return an action to perform on the current turn.
+	 * Beside actions that both dinosaurs can perform,
+	 * Stegosaur is able to graze on grass, which increases its food level.
 	 *
 	 * @param actions    collection of possible Actions for this Actor
 	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
@@ -37,7 +44,6 @@ public class Stegosaur extends Dinosaur {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		if (isConscious()) {
-
 			if (this.getFoodLevel() < 100) {
 				Location locationOfPlayer = map.locationOf(this);
 				if (locationOfPlayer.getGround() instanceof GrassDirt) {

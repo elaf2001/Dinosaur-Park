@@ -19,6 +19,12 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+	/**
+	 * Chooses the shortest path to move towards the chosen actor
+	 * @param actor the Actor acting
+	 * @param map the GameMap containing the Actor
+	 * @return an Action that actor can perform, or null if actor can't do this.
+	 **/
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
@@ -37,7 +43,6 @@ public class FollowBehaviour implements Behaviour {
 				}
 			}
 		}
-
 		return null;
 	}
 

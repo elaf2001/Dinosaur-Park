@@ -1,5 +1,8 @@
 package game;
 
+/**
+ * Class that represent the Hay item.
+ */
 public class HayItem extends FoodItem{
 
     /**

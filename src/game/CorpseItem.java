@@ -2,13 +2,17 @@ package game;
 
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Class that represents the item, which is created if the dinosaur dies.
+ **/
 public class CorpseItem extends FoodItem {
+
     /**
-     *
-     * All Stegosaurs eggs are represented by a '0' and have 10 food points and 200 eco points price.
+     * Constructor that sets the name, display character, and food points of the item.
      */
     public CorpseItem() {
         super("Dead Dinosaur", '%', 50, 0);
+        this.portable=false;
     }
 
 }

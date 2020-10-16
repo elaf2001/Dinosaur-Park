@@ -5,6 +5,8 @@ import edu.monash.fit2099.interfaces.ActorInterface;
 
 /**
  * Class representing the Player.
+ * menu is the main interaction tool
+ * ecoPoints is amount of the local currency that the player has
  */
 public class Player extends Actor implements ActorInterface {
 
@@ -71,5 +73,4 @@ public class Player extends Actor implements ActorInterface {
 	public void gainEcoPoint( int ecoPoints){
 		this.ecoPoints += ecoPoints;
 	}
-
 }

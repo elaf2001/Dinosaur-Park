@@ -2,6 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Special action that can be performed by the player for harvesting grass
+ * target is the grass cell that will be harvested
+ */
 public class HarvestGrassAction extends Action {
 
     protected Ground target;

@@ -2,8 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-
+/**
+ * A class that represents the vending machine, which sells different items.
+ */
 public class VendingMachine extends Ground {
+
     /**
      * Constructor.
      * Vending machine is represented by 'V'
@@ -111,7 +114,6 @@ public class VendingMachine extends Ground {
                 check=false;
             }
         } while (!check);
-
         return null;
     }
 }

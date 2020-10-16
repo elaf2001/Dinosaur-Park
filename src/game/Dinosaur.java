@@ -1,16 +1,13 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-
 import java.lang.Math;
 import java.util.ArrayList;
 
 /**
- * An abstract class that holds all the attributes and methods shared by any kind of the dinosaur.
- * It inherits {PortableItem}.
+ * An abstract class that holds all the attributes and methods shared by both kinds of the dinosaur.
  */
 public abstract class Dinosaur extends Actor {
-
 
     protected int foodLevel;
     private ArrayList<Behaviour> behaviours = new ArrayList();
@@ -22,10 +19,13 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Constructor.
+     * Sets the gender of the dinosaur by random.
+     * Both dinosaurs have Wander and Hungry behaviours.
      *
      * @param name        Name to of the dinosaur
      * @param displayChar Character to represent the dinosaur in the UI
      * @param hitPoints   Dinosaur's starting number of hitpoints
+     * @param foodLevel   level of food, when the dinosaur appears on the map
      */
     public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel) {
         super(name, displayChar, hitPoints);
@@ -35,6 +35,15 @@ public abstract class Dinosaur extends Actor {
         this.foodLevel = foodLevel;
     }
 
+    /**
+     * Returns a collection of the Actions that the otherActor can do to the Dinosaur.
+     * Player is allowed to attack both dinosaurs species and Allosaur is able to attack the Stegosaur.
+     *
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return A collection of Actions.
+     */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
         Actions actions = new Actions(new FeedAction(this));
@@ -47,25 +56,28 @@ public abstract class Dinosaur extends Actor {
     }
 
     /**
-     * Returns the current age, that will be used to make sur that the dinosaur is able to breed.
+     * Returns the current age of the dinosaur
      */
     public int getAge() {
         return age;
     }
+
     /**
-     *Returns the current food level, which is used for breeding
+     *Returns the current food level
      */
     public int getFoodLevel() {
         return foodLevel;
     }
+
     /**
-     * Returns the gender, which is used for breeding
+     * Returns the gender of the dinosaur
      */
     public String getGender() {
         return gender;
     }
+
     /**
-     * Returns if the dinosaur is alive
+     * Returns whether the dinosaur is alive
      */
     public boolean getIs_alive() {
         return is_alive;
@@ -80,6 +92,7 @@ public abstract class Dinosaur extends Actor {
     {
         this.foodLevel-=1;
     }
+
     /**
      * Decreases dinosaurs hit points by the amount passed as a parameter.
      * This method is called, if the dinosaur is attacked by another actor.
@@ -89,10 +102,11 @@ public abstract class Dinosaur extends Actor {
     {
         this.hitPoints-=damage;
     }
+
     /**
      * Allows the dinosaur to eat food, which increases its food points
-     * This method is called if the dinosaur is fed or eating that it found
-     * @param food is the food object that dinosuar is eating
+     * This method is called if the dinosaur is fed or eating the food it found
+     * @param food is the food item that dinosuar is willing to eat
      */
     public boolean eat(FoodItem food){
         if (this.getFoodLevel()==100)
@@ -116,6 +130,7 @@ public abstract class Dinosaur extends Actor {
             return true;
         }
     }
+
     /**
      * Increases the current dinosaur age by 1
      * This method is called once per turn, if the dinosaur is alive.
@@ -130,6 +145,7 @@ public abstract class Dinosaur extends Actor {
     /**
      * Checks the dinosaur food level and hit points to see if the dinosaur is conscious.
      * This method is called once per turn, if the dinosaur is alive
+     * @return whether the dinosaur is conscious
      */
     @Override
     public boolean isConscious(){
@@ -142,7 +158,6 @@ public abstract class Dinosaur extends Actor {
     /**
      * This method randomly sets the gender: female/ male to the dinosaur
      * This method is called once, when the dinosaur object is created
-     *
      */
     public void setGender() {
         String[] genders= new String[]{"male", "female"};
@@ -177,21 +192,25 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-
-
     /**
-     * Figure out what to do next.
-     * Stegosaur wanders around at random,
+     * Every turn:
+     * dinosaur food level is getting decreased,
+     * age is increased
+     * checks whether the dinosaur is conscious and if not count turns to die.
+     * Dinosaurs have hungry behaviour if its food level is lower than 30 and
+     * Breeding behaviour if its age and food level are more than 30.
      *
-     * @return
+     * @param actions  collection of possible Actions for this dinosaur
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map the map containing the Actor
+     * @param display the I/O object to which messages may be written
+     * @return the Action to be performed
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        //decrease the food lev
         decreaseFoodLevel();
         increaseAge();
         countToDie();
-
         if (!is_alive) {
             Location locationOfActor = map.locationOf(this);
             map.removeActor(this);

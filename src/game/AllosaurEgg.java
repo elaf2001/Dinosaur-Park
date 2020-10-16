@@ -1,22 +1,36 @@
 package game;
 
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 
 import java.util.List;
 
 /**
- * Class that represents the Allosaur eggs in the system. It is the child class of {EggItem}.
+ * Class that represents the Allosaur eggs in the system
  */
 public class AllosaurEgg extends EggItem{
 
     /**
      * Constructor for the AllosaurEgg
+     * All Allosaurs Eggs are represented by 'O' and have food points of 10 and price of 1000 eco points
      * @param name The name of the Allosaur Egg
      */
     public AllosaurEgg(String name) {
         super(name, 'O',10,1000);
+    }
+
+    /**
+     * Inform a carried Item of the passage of time.
+     *
+     * This method is called once per turn, if the Item is being carried.
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor The actor carrying this Item.
+     */
+    @Override
+    public void tick(Location currentLocation, Actor actor){
+        super.tick(currentLocation, actor);
     }
 
     /**
@@ -32,8 +46,9 @@ public class AllosaurEgg extends EggItem{
 
     /**
      * This function allows the egg to hatch by removing the egg item and adding
-     * another dinosaur. The dinosaur added will be based on the type of egg. In this
-     * scenario it is Allosaur
+     * a new Allosaur.
+     * If there is an actor standing on the location of the egg, it will
+     * hatch to the nearest empty location.
      * @param currentLocation the current location of the egg.
      */
     public void hatchEgg(Location currentLocation){
@@ -49,7 +64,8 @@ public class AllosaurEgg extends EggItem{
                     break;
                 }
             }
-        }else{
+        }
+        else{
             currentLocation.addActor(newAllosaur);
         }
 
