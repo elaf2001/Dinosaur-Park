@@ -53,7 +53,7 @@ public class StegosaurEgg extends EggItem{
     public void hatchEgg(Location currentLocation){
         currentLocation.removeItem(this);
         this.increasePlayerPoints(currentLocation,100);
-        Stegosaur newStegosaur = new Stegosaur("Stegosaur", 10,0);
+        Stegosaur newStegosaur = new Stegosaur("Stegosaur", 10);
         if(currentLocation.containsAnActor()){
             List<Exit> exits = currentLocation.getExits();
             for(Exit exit: exits){
