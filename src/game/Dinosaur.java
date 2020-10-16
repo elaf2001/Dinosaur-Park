@@ -93,9 +93,11 @@ public abstract class Dinosaur extends Actor {
      * This method is called once per turn, if the food level of the dinosaur is more than 0 and the dinosaur is alive.
      */
     public void increasingFoodLevel(int increment)
-    {   if (this.foodLevel <100){
+    {   if (increment < 100 - foodLevel){
             this.foodLevel+=increment;
-        }
+        }else{
+        this.foodLevel = 100;
+    }
     }
 
     /**
@@ -204,17 +206,19 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
         System.out.println(this.getFoodLevel());
+        System.out.println(this.getGender());
         decreaseFoodLevel();
         increaseAge();
         countToDie();
+        if(this.foodLevel <30){
+            System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
+        }
         if (!is_alive) {
             Location locationOfActor = map.locationOf(this);
             map.removeActor(this);
             Item corpse = new CorpseItem();
             locationOfActor.addItem(corpse);
-            if(this.foodLevel <0){
-                System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
-            }
+
         }
         if (isConscious()) {
             if(this.foodLevel <30){
@@ -222,7 +226,6 @@ public abstract class Dinosaur extends Actor {
                 if(hungry != null){
                     return hungry;
                 }
-                System.out.println(this + " at (" + map.locationOf(this).x() + "," +map.locationOf(this).y()+ ") is getting hungry!");
             }
             if(this.getAge() >=30 && this.foodLevel>50){
                 Action breed = behaviours.get(2).getAction(this,map);
