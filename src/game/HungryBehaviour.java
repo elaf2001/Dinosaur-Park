@@ -79,7 +79,7 @@ public class HungryBehaviour implements Behaviour {
                     }
                 }
             }
-            return new FollowFoodBehaviour(minLocation).getAction(actor,map);
+            return new FollowBehaviour(minLocation).getAction(actor,map);
         }
         return new WanderBehaviour().getAction(actor,map);
     }

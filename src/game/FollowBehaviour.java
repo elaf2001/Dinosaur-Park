@@ -4,12 +4,12 @@ import edu.monash.fit2099.engine.*;
 
 /**
  * A class that figures out a MoveAction that will move the actor one step 
- * closer to a target Actor.
+ * closer to a target Actor or a target location.
  */
 public class FollowBehaviour implements Behaviour {
 
 	private Actor target;
-//    private Location location;
+    private Location location;
 
 	/**
 	 * Constructor.
@@ -20,20 +20,38 @@ public class FollowBehaviour implements Behaviour {
 		this.target = subject;
 	}
 
+
 	/**
-	 * Chooses the shortest path to move towards the chosen actor
+	 * Constructor.
+	 *
+	 * @param minLoc the location of the food item to follow
+	 */
+	public FollowBehaviour(Location minLoc){
+		this.location = minLoc;
+	}
+
+
+
+
+	/**
+	 * Chooses the shortest path to move towards the chosen actor or location
 	 * @param actor the Actor acting
 	 * @param map the GameMap containing the Actor
 	 * @return an Action that actor can perform, or null if actor can't do this.
 	 **/
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		if(!map.contains(target) || !map.contains(actor))
+		if (!map.contains(actor))
 			return null;
-		
+		Location there;
+		if (target != null && location == null) {
+			if (!map.contains(target))
+				return null;
+			there = map.locationOf(target);
+		} else {
+			there = this.location;
+		}
 		Location here = map.locationOf(actor);
-		Location there = map.locationOf(target);
-
 		int currentDistance = distance(here, there);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
