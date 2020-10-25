@@ -64,9 +64,11 @@ public class HungryBehaviour implements Behaviour {
                 for(Item item: items){
                     if(actor instanceof Stegosaur){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
+                            minLocation.removeItem(item);
                             return new EatingAction((FoodItem) item);
                         }
                     }else if (actor instanceof Allosaur){
+                        minLocation.removeItem(item);
                         if(item instanceof EggItem || item instanceof CorpseItem || item instanceof CarnivoreMealKitItem){
                             return new EatingAction((FoodItem) item);
                         }

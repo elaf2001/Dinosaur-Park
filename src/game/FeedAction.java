@@ -56,7 +56,7 @@ public class FeedAction extends Action {
                     } else if (playerChoice == '2') {
                         if (item instanceof FruitItem) {
                             actor.removeItemFromInventory(item);
-                            ((Player) actor).gainEcoPoint(10);
+                            ((Player) actor).gainEcoPoint(15);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
                             found = true;
