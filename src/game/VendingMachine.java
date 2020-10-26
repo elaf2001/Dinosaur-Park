@@ -77,7 +77,8 @@ public class VendingMachine extends Ground {
         display.println("4. Carnivore meal kit - 500 EP ");
         display.println("5. Stegosaur eggs  - 200 EP ");
         display.println("6. Allosaur eggs  - 1000 EP ");
-        display.println("7. Laser gun - 500 EP \n");
+        display.println("7. Archaeopretyx eggs  - 600 EP ");
+        display.println("9. Laser gun - 500 EP \n");
         boolean check=true;
         do
         {
@@ -99,13 +100,17 @@ public class VendingMachine extends Ground {
             }
             else if(playerChoice == '5')
             {
-                return boughtItem=new StegosaurEgg("SG");
+                return boughtItem=new StegosaurEgg("Stegosaur egg");
             }
             else if(playerChoice == '6')
             {
-                return boughtItem=new AllosaurEgg("AG");
+                return boughtItem=new AllosaurEgg("Allosaur egg");
             }
             else if(playerChoice == '7')
+            {
+                return boughtItem= new ArchaeopteryxEgg("Archaeopteryx egg");
+            }
+            else if(playerChoice == '8')
             {
                 return boughtItem=new LaserGun();
             }

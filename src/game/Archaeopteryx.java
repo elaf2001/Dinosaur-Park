@@ -1,23 +1,20 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import java.util.ArrayList;
+
 import java.util.List;
 
-/**
- * A carnivorous dinosaur
- *
- */
-public class Allosaur extends Dinosaur {
+public class Archaeopteryx extends Dinosaur {
 
     /**
      * Constructor.
-     * All Allosaurs are represented by 'a' and have 100 hit points.
+     * Sets the gender of the dinosaur by random.
+     * Both dinosaurs have Wander and Hungry behaviours.
      *
-     * @param name the name of this Allosaur
+     * @param name        Name to of the dinosaur
      */
-    public Allosaur(String name) {
-        super(name, 'a', 100, 10, true, false);
+    public Archaeopteryx(String name) {
+        super(name, 'x', 100, 10, true, false);
     }
 
     /**
@@ -38,8 +35,8 @@ public class Allosaur extends Dinosaur {
             for (Exit exit :exits){
                 Location nextTo = exit.getDestination();
                 if (nextTo.containsAnActor()){
-                    if(nextTo.getActor() instanceof Stegosaur){
-                        Stegosaur target = (Stegosaur) nextTo.getActor();
+                    if(!(nextTo.getActor() instanceof Archaeopteryx) && !(nextTo.getActor() instanceof Player)){
+                        Actor target = nextTo.getActor();
                         return new AttackAction(target);
                     }
                 }
@@ -47,4 +44,5 @@ public class Allosaur extends Dinosaur {
         }
         return super.playTurn(actions, lastAction, map, display);
     }
+
 }

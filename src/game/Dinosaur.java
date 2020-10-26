@@ -15,7 +15,8 @@ public abstract class Dinosaur extends Actor {
     private int age;
     private boolean is_alive=true;
     private int turn=0;
-
+    private boolean is_carnivore;
+    private boolean is_vegetarian;
 
     /**
      * Constructor.
@@ -27,12 +28,14 @@ public abstract class Dinosaur extends Actor {
      * @param hitPoints   Dinosaur's starting number of hitpoints
      * @param foodLevel   level of food, when the dinosaur appears on the map
      */
-    public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel) {
+    public Dinosaur(String name, char displayChar, int hitPoints, int foodLevel, boolean is_carnivore, boolean is_vegetarian) {
         super(name, displayChar, hitPoints);
         setGender();
         behaviours.add(new WanderBehaviour());
         behaviours.add(new HungryBehaviour());
         this.foodLevel = foodLevel;
+        this.is_carnivore=is_carnivore;
+        this.is_vegetarian=is_vegetarian;
     }
 
     /**
@@ -76,7 +79,15 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
+    public boolean getIs_carnivore()
+    {
+        return is_carnivore;
+    }
 
+    public boolean getIs_vegetarian()
+    {
+        return is_vegetarian;
+    }
     /**
      * Decreases dinosaur food level by 1
      * This method is called once per turn, if the food level of the dinosaur is more than 0 and the dinosaur is alive.

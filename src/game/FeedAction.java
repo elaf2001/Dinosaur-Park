@@ -42,7 +42,7 @@ public class FeedAction extends Action {
         }
         boolean found = false;
         if (playerChoice == '1' || playerChoice == '2' || playerChoice == '3') {
-            if (target instanceof Stegosaur) {
+            if (target.getIs_vegetarian()) {
                 for (Item item : actor.getInventory()) {
                     if (playerChoice == '1') {
                         if (item instanceof HayItem) {
@@ -81,7 +81,7 @@ public class FeedAction extends Action {
             }
         }
         else {
-            if (target instanceof Allosaur) {
+            if (target.getIs_carnivore()) {
                 for (Item item : actor.getInventory()) {
                     if (playerChoice == '4') {
                         if (item instanceof CarnivoreMealKitItem) {

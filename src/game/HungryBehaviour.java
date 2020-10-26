@@ -29,17 +29,17 @@ public class HungryBehaviour implements Behaviour {
                 Location current = map.at(x,y);
                 List<Item> items = current.getItems();
                 for(Item item: items){
-                    if(actor instanceof Stegosaur){
+                    if(((Dinosaur)actor).getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             locations.add(current);
                         }
-                    }else if (actor instanceof Allosaur){
+                    }else if (((Dinosaur)actor).getIs_carnivore()){
                         if(item instanceof EggItem || item instanceof CorpseItem || item instanceof CarnivoreMealKitItem){
                             locations.add(current);
                         }
                     }
                 }
-                if(actor instanceof Stegosaur){
+                if(((Dinosaur)actor).getIs_vegetarian()){
                     Ground ground = current.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         locations.add(current);
@@ -62,19 +62,19 @@ public class HungryBehaviour implements Behaviour {
             if(locationOfActor == minLocation){
                 List<Item> items = minLocation.getItems();
                 for(Item item: items){
-                    if(actor instanceof Stegosaur){
+                    if(((Dinosaur)actor).getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             minLocation.removeItem(item);
                             return new EatingAction((FoodItem) item);
                         }
-                    }else if (actor instanceof Allosaur){
+                    }else if (((Dinosaur)actor).getIs_carnivore()){
                         minLocation.removeItem(item);
                         if(item instanceof EggItem || item instanceof CorpseItem || item instanceof CarnivoreMealKitItem){
                             return new EatingAction((FoodItem) item);
                         }
                     }
                 }
-                if(actor instanceof Stegosaur){
+                if(((Dinosaur)actor).getIs_vegetarian()){
                     Ground ground = minLocation.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         return new GrazingGrassAction(ground);

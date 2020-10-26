@@ -17,7 +17,7 @@ public class Stegosaur extends Dinosaur {
 	 * @param foodLevel food level of the Stegosaur when it is initialised
 	 */
 	public Stegosaur(String name, int foodLevel) {
-		super(name, 's', 100, foodLevel);
+		super(name, 's', 100, foodLevel, false, true);
 	}
 
 

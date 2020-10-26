@@ -31,8 +31,8 @@ public class GrazingGrassAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         target.setDisplayChar('.');
-        if (actor instanceof Stegosaur) {
-            ((Stegosaur) actor).increasingFoodLevel(5);
+        if (((Dinosaur)actor).getIs_vegetarian()) {
+            ((Dinosaur) actor).increasingFoodLevel(5);
         }
         return menuDescription(actor);
     }
