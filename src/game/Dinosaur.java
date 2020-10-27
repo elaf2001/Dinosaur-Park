@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public abstract class Dinosaur extends Actor {
 
     protected int foodLevel;
+    protected int waterLevel;
     private ArrayList<Behaviour> behaviours = new ArrayList();
     private String gender; //female or male
     private int age;
@@ -33,9 +34,11 @@ public abstract class Dinosaur extends Actor {
         setGender();
         behaviours.add(new WanderBehaviour());
         behaviours.add(new HungryBehaviour());
+        behaviours.add(new ThirstyBehaviour());
         this.foodLevel = foodLevel;
         this.is_carnivore=is_carnivore;
         this.is_vegetarian=is_vegetarian;
+        this.waterLevel=50;
     }
 
     /**
@@ -72,6 +75,11 @@ public abstract class Dinosaur extends Actor {
         return foodLevel;
     }
 
+    public int getWaterLevel()
+    {
+        return waterLevel;
+    }
+
     /**
      * Returns the gender of the dinosaur
      */
@@ -88,14 +96,18 @@ public abstract class Dinosaur extends Actor {
     {
         return is_vegetarian;
     }
+
     /**
      * Decreases dinosaur food level by 1
      * This method is called once per turn, if the food level of the dinosaur is more than 0 and the dinosaur is alive.
      */
-    public void decreaseFoodLevel()
+    public void decreaseFoodWaterLevel()
     {
         if(this.foodLevel >0) {
             this.foodLevel -= 1;
+        }
+        if(this.waterLevel>0) {
+            this.waterLevel -= 1;
         }
     }
 
@@ -105,10 +117,11 @@ public abstract class Dinosaur extends Actor {
      */
     public void increasingFoodLevel(int increment)
     {   if (increment < 100 - foodLevel){
-            this.foodLevel+=increment;
-        }else{
-        this.foodLevel = 100;
+        this.foodLevel+=increment;
     }
+    else
+    {
+        this.foodLevel = 100; }
     }
 
     /**
@@ -129,14 +142,28 @@ public abstract class Dinosaur extends Actor {
             // if not mealKit increases dinosaur food level by amount food points of this food
             else {
                 int increment = food.getFoodPoints();
-                if (increment < 100 - foodLevel) {
-                    this.increasingFoodLevel(increment);
-                } else {
-                    this.foodLevel = 100;
-                }
+                this.increasingFoodLevel(increment);
             }
             return true;
         }
+    }
+
+
+    public boolean drink(Water water){
+        if (this.getWaterLevel()==100)
+        {
+            return false;
+        }
+        else {
+            int increment = water.getDRINK_POINTS();
+            if (increment < 100 - waterLevel) {
+                this.waterLevel+=increment;
+            }
+            else {
+                this.waterLevel = 100;
+            }
+        }
+        return true;
     }
 
     /**
@@ -158,7 +185,7 @@ public abstract class Dinosaur extends Actor {
     @Override
     public boolean isConscious(){
         boolean consciousness=false;
-        if (super.isConscious()&&foodLevel>0)
+        if (super.isConscious()&&foodLevel>0&&waterLevel>0)
             consciousness=true;
         return consciousness;
     }
@@ -216,7 +243,7 @@ public abstract class Dinosaur extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        decreaseFoodLevel();
+        decreaseFoodWaterLevel();
         increaseAge();
         countToDie();
         if(this.foodLevel <30){
@@ -227,7 +254,6 @@ public abstract class Dinosaur extends Actor {
             map.removeActor(this);
             Item corpse = new CorpseItem();
             locationOfActor.addItem(corpse);
-
         }
         if (isConscious()) {
             if(this.foodLevel <30){
@@ -236,8 +262,14 @@ public abstract class Dinosaur extends Actor {
                     return hungry;
                 }
             }
+            if(this.foodLevel>=30&&this.waterLevel<30){
+                Action thirsty = behaviours.get(2).getAction(this, map);
+                if(thirsty != null){
+                    return thirsty;
+                }
+            }
             if(this.getAge() >=30 && this.foodLevel>50){
-                Action breed = behaviours.get(2).getAction(this,map);
+                Action breed = behaviours.get(3).getAction(this,map);
                 if(breed != null){
                     return breed;
                 }
