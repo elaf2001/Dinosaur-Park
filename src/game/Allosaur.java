@@ -38,7 +38,7 @@ public class Allosaur extends Dinosaur {
             for (Exit exit :exits){
                 Location nextTo = exit.getDestination();
                 if (nextTo.containsAnActor()){
-                    if(!(nextTo.getActor() instanceof Allosaur)){
+                    if(nextTo.getActor() instanceof Stegosaur | nextTo.getActor() instanceof Agilisaurus){
                         Dinosaur target = (Dinosaur) nextTo.getActor();
                         return new AttackAction(target);
                     }

@@ -78,6 +78,7 @@ public class VendingMachine extends Ground {
         display.println("5. Stegosaur eggs  - 200 EP ");
         display.println("6. Allosaur eggs  - 1000 EP ");
         display.println("7. Archaeopretyx eggs  - 600 EP ");
+        display.println("8. Agilisaurus eggs  - 600 EP ");
         display.println("9. Laser gun - 500 EP \n");
         boolean check=true;
         do
@@ -111,6 +112,10 @@ public class VendingMachine extends Ground {
                 return boughtItem= new ArchaeopteryxEgg("Archaeopteryx egg");
             }
             else if(playerChoice == '8')
+            {
+                return boughtItem= new AgilisaurusEgg("Agilisaurus Egg");
+            }
+            else if(playerChoice == '9')
             {
                 return boughtItem=new LaserGun();
             }
