@@ -18,9 +18,9 @@ public class HungryBehaviour implements Behaviour {
      * When the dinosaur reaches the food item and is standing in the same cell, it can perform an eating action.
      * If no food is found, returns null.
      */
-    public Action getAction(Actor actor, GameMap map) {
+    public Action getAction(Dinosaur dinosaur, GameMap map) {
         ArrayList<Location> locations = new ArrayList<>();
-        Location locationOfActor = map.locationOf(actor);
+        Location locationOfActor = map.locationOf(dinosaur);
         ArrayList<Integer> distances = new ArrayList<>();
         NumberRange xRange = map.getXRange();
         NumberRange yRange = map.getYRange();
@@ -29,17 +29,17 @@ public class HungryBehaviour implements Behaviour {
                 Location current = map.at(x,y);
                 List<Item> items = current.getItems();
                 for(Item item: items){
-                    if(((Dinosaur)actor).getIs_vegetarian()){
+                    if(dinosaur.getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             locations.add(current);
                         }
-                    }else if (((Dinosaur)actor).getIs_carnivore()){
+                    }else if (dinosaur.getIs_carnivore()){
                         if(item instanceof EggItem || item instanceof CorpseItem || item instanceof CarnivoreMealKitItem){
                             locations.add(current);
                         }
                     }
                 }
-                if(((Dinosaur)actor).getIs_vegetarian()){
+                if(dinosaur.getIs_vegetarian()){
                     Ground ground = current.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         locations.add(current);
@@ -62,28 +62,28 @@ public class HungryBehaviour implements Behaviour {
             if(locationOfActor == minLocation){
                 List<Item> items = minLocation.getItems();
                 for(Item item: items){
-                    if(((Dinosaur)actor).getIs_vegetarian()){
+                    if(dinosaur.getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             minLocation.removeItem(item);
                             return new EatingAction((FoodItem) item);
                         }
-                    }else if (((Dinosaur)actor).getIs_carnivore()){
+                    }else if (dinosaur.getIs_carnivore()){
                         minLocation.removeItem(item);
                         if(item instanceof EggItem || item instanceof CorpseItem || item instanceof CarnivoreMealKitItem){
                             return new EatingAction((FoodItem) item);
                         }
                     }
                 }
-                if(((Dinosaur)actor).getIs_vegetarian()){
+                if(dinosaur.getIs_vegetarian()){
                     Ground ground = minLocation.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         return new GrazingGrassAction(ground);
                     }
                 }
             }
-            return new FollowBehaviour(minLocation).getAction(actor,map);
+            return new FollowBehaviour(minLocation).getAction(dinosaur,map);
         }
-        return new WanderBehaviour().getAction(actor,map);
+        return new WanderBehaviour().getAction(dinosaur,map);
     }
 
     /**

@@ -3,8 +3,9 @@ package edu.monash.fit2099.engine;
 import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.demo.mars.Floor;
+//import edu.monash.fit2099.demo.mars.Floor;
 import edu.monash.fit2099.interfaces.ItemInterface;
+import game.Floor;
 
 /**
  * Abstract base class representing a physical object in the game world.

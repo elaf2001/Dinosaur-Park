@@ -22,9 +22,9 @@ public interface Behaviour {
 	 * us to modularize the code that decides what to do, and that means that it can be 
 	 * reused if (e.g.) more than one kind of Actor needs to be able to seek, follow, or hide.
 	 *
-	 * @param actor the Actor acting
+	 * @param dinosaur the Actor acting
 	 * @param map the GameMap containing the Actor
 	 * @return an Action that actor can perform, or null if actor can't do this.
 	 */
-	Action getAction(Actor actor, GameMap map);
+	Action getAction(Dinosaur dinosaur, GameMap map);
 }

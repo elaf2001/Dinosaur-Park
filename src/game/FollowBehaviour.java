@@ -16,7 +16,7 @@ public class FollowBehaviour implements Behaviour {
 	 * 
 	 * @param subject the Actor to follow
 	 */
-	public FollowBehaviour(Actor subject) {
+	public FollowBehaviour(Dinosaur subject) {
 		this.target = subject;
 	}
 
@@ -35,13 +35,13 @@ public class FollowBehaviour implements Behaviour {
 
 	/**
 	 * Chooses the shortest path to move towards the chosen actor or location
-	 * @param actor the Actor acting
+	 * @param dinosaur the Actor acting
 	 * @param map the GameMap containing the Actor
 	 * @return an Action that actor can perform, or null if actor can't do this.
 	 **/
 	@Override
-	public Action getAction(Actor actor, GameMap map) {
-		if (!map.contains(actor))
+	public Action getAction(Dinosaur dinosaur, GameMap map) {
+		if (!map.contains(dinosaur))
 			return null;
 		Location there;
 		if (target != null && location == null) {
@@ -51,11 +51,11 @@ public class FollowBehaviour implements Behaviour {
 		} else {
 			there = this.location;
 		}
-		Location here = map.locationOf(actor);
+		Location here = map.locationOf(dinosaur);
 		int currentDistance = distance(here, there);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
-			if (destination.canActorEnter(actor)) {
+			if (destination.canActorEnter(dinosaur)) {
 				int newDistance = distance(destination, there);
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
