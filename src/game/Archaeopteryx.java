@@ -14,7 +14,7 @@ public class Archaeopteryx extends Dinosaur {
      * @param name        Name to of the dinosaur
      */
     public Archaeopteryx(String name) {
-        super(name, 'x', 100, 10, true, false);
+        super(name, 'x', 100, 20, true, false);
     }
 
     /**
@@ -30,18 +30,6 @@ public class Archaeopteryx extends Dinosaur {
      */
     @Override
     public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-        if (isConscious()) {
-            List<Exit> exits = map.locationOf(this).getExits();
-            for (Exit exit :exits){
-                Location nextTo = exit.getDestination();
-                if (nextTo.containsAnActor()){
-                    if(!(nextTo.getActor() instanceof Archaeopteryx) && !(nextTo.getActor() instanceof Player)){
-                        Actor target = nextTo.getActor();
-                        return new AttackAction(target);
-                    }
-                }
-            }
-        }
         return super.playTurn(actions, lastAction, map, display);
     }
 

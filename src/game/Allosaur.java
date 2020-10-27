@@ -17,7 +17,7 @@ public class Allosaur extends Dinosaur {
      * @param name the name of this Allosaur
      */
     public Allosaur(String name) {
-        super(name, 'a', 100, 10, true, false);
+        super(name, 'a', 100, 30, true, false);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Allosaur extends Dinosaur {
             for (Exit exit :exits){
                 Location nextTo = exit.getDestination();
                 if (nextTo.containsAnActor()){
-                    if(nextTo.getActor() instanceof Stegosaur | nextTo.getActor() instanceof Agilisaurus){
+                    if(nextTo.getActor() instanceof Stegosaur){
                         Dinosaur target = (Dinosaur) nextTo.getActor();
                         return new AttackAction(target);
                     }

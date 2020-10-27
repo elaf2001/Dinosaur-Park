@@ -44,6 +44,21 @@ public class HungryBehaviour implements Behaviour {
                     if(ground.getDisplayChar() == 'g'){
                         locations.add(current);
                     }
+                }else if(dinosaur instanceof Allosaur){
+                    if(current.containsAnActor()){
+                        Actor target = current.getActor();
+                        if(target instanceof Agilisaurus){
+                            locations.add(map.locationOf(target));
+                        }
+                    }
+                }else if(dinosaur instanceof Archaeopteryx){
+
+                    if(current.containsAnActor()){
+                        Actor target = current.getActor();
+                        if(target instanceof Dinosaur && !(target instanceof Archaeopteryx)){
+                            locations.add(map.locationOf(target));
+                        }
+                    }
                 }
             }
         }
@@ -78,6 +93,26 @@ public class HungryBehaviour implements Behaviour {
                     Ground ground = minLocation.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         return new GrazingGrassAction(ground);
+                    }
+                }
+            }else if(dinosaur instanceof Allosaur ){
+                List<Exit> exits = locationOfActor.getExits();
+                for(Exit exit: exits){
+                    if(exit.getDestination().containsAnActor()){
+                        Actor target = exit.getDestination().getActor();
+                        if (target instanceof Agilisaurus){
+                            return new HuntingAction(target);
+                        }
+                    }
+                }
+            }else if(dinosaur instanceof Archaeopteryx){
+                List<Exit> exits = locationOfActor.getExits();
+                for(Exit exit: exits){
+                    if(exit.getDestination().containsAnActor()){
+                        Actor target = exit.getDestination().getActor();
+                        if (target instanceof Dinosaur & !(target instanceof  Archaeopteryx)){
+                            return new HuntingAction(target);
+                        }
                     }
                 }
             }
