@@ -4,13 +4,14 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.ActionInterface;
 
 
 /**
  * Class that allows dinosaurs to breed
  * target is a dinosaur that the actor dinosaur will breed with
  */
-public class BreedingAction extends Action {
+public class BreedingAction extends Action{
 
     protected Dinosaur target;
 
@@ -77,6 +78,7 @@ public class BreedingAction extends Action {
     public String menuDescription(Actor actor) {
         return actor + " mates with " + target;
     }
+
 
 
 }

@@ -31,8 +31,9 @@ public class EatingAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if(actor instanceof Dinosaur){
-            ((Dinosaur) actor).eat(this.item);
-            return menuDescription(actor);
+            if (((Dinosaur) actor).eat(this.item)) {
+                return menuDescription(actor);
+            }
         }
         return null;
     }
@@ -46,4 +47,12 @@ public class EatingAction extends Action {
       public String menuDescription(Actor actor) {
         return actor +" ate " + this.item;
     }
+
+    //@Override
+//    public String execute(Dinosaur dinosaur, GameMap map) {
+//            if (dinosaur.eat(this.item)) {
+//                return menuDescription(dinosaur);
+//            }
+//        return null;
+//    }
 }

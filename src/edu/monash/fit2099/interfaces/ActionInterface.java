@@ -1,6 +1,8 @@
 package edu.monash.fit2099.interfaces;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.Dinosaur;
 import game.Player;
 
 /**
@@ -8,5 +10,5 @@ import game.Player;
  * or downcasting references in the game.   
  */
 public interface ActionInterface {
-
+    //String execute(Dinosaur dinosaur, GameMap map);
 }
