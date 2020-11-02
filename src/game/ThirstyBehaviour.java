@@ -6,10 +6,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class is responsible for implementing the dinosaur thirsty behaviour:
+ * when the water level of the dinosaur is low it starts searching for water source
+ * and when it finds it, the dinosaur drinks water
+ */
 public class ThirstyBehaviour implements Behaviour {
 
-    /** Searches for the nearest water source and moves towards the nearest one.
-     * When the dinosaur reaches the water cell and is standing next to it, it can perform a drinking action.
+    /** Searches for the nearest water source and if there is one found, moves towards it.
+     * When the dinosaur reaches the water pool and is standing in the adjacent cell,
+     * it can perform a drinking action.
+     *
+     * @param dinosaur the dinosaur that is having this behaviour
+     * @param map the map where the action is going on
+     *
+     * @return the Action that the dinosaur performs
      */
     public Action getAction(Dinosaur dinosaur, GameMap map) {
 

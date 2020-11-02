@@ -6,12 +6,15 @@ import edu.monash.fit2099.engine.Location;
 
 import java.util.List;
 
+/**
+ * An egg of carnivorous dinosaur of archaeopteryx specie
+ */
 public class ArchaeopteryxEgg extends EggItem {
 
     /**
-     * Constructor for the AllosaurEgg
-     * All Allosaurs Eggs are represented by 'O' and have food points of 10 and price of 1000 eco points
-     * @param name The name of the Allosaur Egg
+     * Constructor
+     * All Archaeopteryx Eggs are represented by 'Q' , have food points of 10 and price of 600 eco points
+     * @param name The name of the Archaeopteryx Egg
      */
     public ArchaeopteryxEgg(String name) {
         super(name, 'Q',10,600);
@@ -42,7 +45,7 @@ public class ArchaeopteryxEgg extends EggItem {
 
     /**
      * This function allows the egg to hatch by removing the egg item and adding
-     * a new Allosaur.
+     * a new Archaeopteryx.
      * If there is an actor standing on the location of the egg, it will
      * hatch to the nearest empty location.
      * @param currentLocation the current location of the egg.

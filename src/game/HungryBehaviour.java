@@ -17,6 +17,11 @@ public class HungryBehaviour implements Behaviour {
      * and if there is one found, moves towards it.
      * When the dinosaur reaches the food item and is standing in the same cell, it can perform an eating action.
      * If no food is found, returns null.
+     *
+     * @param dinosaur the dinosaur that is having this behaviour
+     * @param map the map where the action is going on
+     *
+     * @return the Action that the dinosaur performs
      */
     public Action getAction(Dinosaur dinosaur, GameMap map) {
         ArrayList<Location> locations = new ArrayList<>();
@@ -28,6 +33,7 @@ public class HungryBehaviour implements Behaviour {
             for(int y: yRange){
                 Location current = map.at(x,y);
                 List<Item> items = current.getItems();
+                //looking for locations of items around the map
                 for(Item item: items){
                     if(dinosaur.getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
@@ -39,20 +45,24 @@ public class HungryBehaviour implements Behaviour {
                         }
                     }
                 }
+                //if dinosaur is vegetarian the location of all the grass cells is added
                 if(dinosaur.getIs_vegetarian()){
                     Ground ground = current.getGround();
                     if(ground.getDisplayChar() == 'g'){
                         locations.add(current);
                     }
-                }else if(dinosaur instanceof Allosaur){
+                }
+                //if the dinosaur is Allosaur specie it will add locations of all the agilisaurus
+                else if(dinosaur instanceof Allosaur){
                     if(current.containsAnActor()){
                         Actor target = current.getActor();
                         if(target instanceof Agilisaurus){
                             locations.add(map.locationOf(target));
                         }
                     }
-                }else if(dinosaur instanceof Archaeopteryx){
-
+                }
+                // if the dinosaur is Archaeopteryx specie it will add locations of all other species of dinosaurs
+                else if(dinosaur instanceof Archaeopteryx){
                     if(current.containsAnActor()){
                         Actor target = current.getActor();
                         if(target instanceof Dinosaur && !(target instanceof Archaeopteryx)){

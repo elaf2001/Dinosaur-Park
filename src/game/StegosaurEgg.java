@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Location;
 import java.util.List;
 
 /**
- * Class that represents the Stegosaur eggs in the system. It is the child class of {EggItem}.
+ * Class that represents the Stegosaur eggs in the system.
  */
 public class StegosaurEgg extends EggItem{
 

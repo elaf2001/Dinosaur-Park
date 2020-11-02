@@ -6,10 +6,14 @@ import edu.monash.fit2099.engine.Location;
 
 import java.util.List;
 
+/**
+ * Egg class for the dinosaur of agilisaurus specie
+ */
 public class AgilisaurusEgg extends EggItem{
     /**
      * Constructor
-     * @param name  - name of the egg
+     * All Agilisaurus Eggs are represented by 'D' , have food points of 10 and price of 600 eco points
+     * @param name The name of the Agilisaurus Egg
      */
     public AgilisaurusEgg(String name) {
         super(name, 'D', 10, 600);
@@ -39,7 +43,7 @@ public class AgilisaurusEgg extends EggItem{
     }
 
     /**
-     * Allows the egg to hatch and a new dinosaur to be born based on the type of egg.
+     * Allows the egg to hatch and an Agilisaurus will be born
      * @param currentLocation the location of the ground the actor lies on
      */
     @Override
