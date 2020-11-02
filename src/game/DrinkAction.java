@@ -15,8 +15,10 @@ public class DrinkAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if(actor instanceof Dinosaur){
-            ((Dinosaur) actor).drink(water);
-            return menuDescription(actor);
+            if (((Dinosaur) actor).drink(water))
+            {
+                return menuDescription(actor);
+            }
         }
         return null;
     }
