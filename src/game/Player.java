@@ -12,6 +12,9 @@ public class Player extends Actor implements ActorInterface {
 
 	private Menu menu = new Menu();
 	private int ecoPoints;
+	private int moveChoice;
+	private int turns=0;
+	private int ecoPointsChoice;
 
 	/**
 	 * Constructor. Initialises the amount of eco points of the player to 0.
@@ -22,7 +25,7 @@ public class Player extends Actor implements ActorInterface {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		this.ecoPoints=1000000;
+		this.ecoPoints=0;
 	}
 
 	/**
@@ -38,6 +41,7 @@ public class Player extends Actor implements ActorInterface {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		Location locationOfPlayer = map.locationOf(this);
+
 		if(locationOfPlayer.getGround() instanceof Tree){
 			actions.add(((Tree) locationOfPlayer.getGround()).getSearchTreeAction());
 		}
@@ -47,6 +51,21 @@ public class Player extends Actor implements ActorInterface {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		if(this.moveChoice>0){
+			if (this.moveChoice == this.turns){
+				if(this.ecoPoints >= this.ecoPointsChoice){
+					System.out.println("You Win!");
+				} else {
+					System.out.println("You lose!");
+				}
+				System.out.println("Your Eco points: " + this.ecoPoints);
+				return new EndGameAction();
+			}
+			this.turns +=1;
+			System.out.println("Turn #" + this.turns + ". Eco points: " + this.ecoPoints);
+		}
+		actions.add(new EndGameAction());
 		return menu.showMenu(this, actions, display);
 	}
 
@@ -73,4 +92,12 @@ public class Player extends Actor implements ActorInterface {
 	public void gainEcoPoint( int ecoPoints){
 		this.ecoPoints += ecoPoints;
 	}
+
+	public void setChallenge(int moveChoice, int ecoPointsChoice){
+		this.moveChoice = moveChoice;
+		this.ecoPointsChoice = ecoPointsChoice;
+	}
+
+
+
 }
