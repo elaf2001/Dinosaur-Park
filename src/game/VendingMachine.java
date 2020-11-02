@@ -68,7 +68,7 @@ public class VendingMachine extends Ground {
      */
     public Item menuVendingMachine()
     {
-        Item boughtItem;
+
         Display display= new Display();
         display.println("What would you like to purchase?");
         display.println("1. Hay - 20 EP ");
@@ -85,45 +85,45 @@ public class VendingMachine extends Ground {
         {
             char playerChoice=display.readChar();
             if (playerChoice == '1'){
-                return boughtItem=new HayItem();
+                return new HayItem();
             }
             else if(playerChoice == '2')
             {
-                return boughtItem=new FruitItem();
+                return new FruitItem();
             }
             else if(playerChoice == '3')
             {
-                return boughtItem=new VegetarianMealKitItem("VMK");
+                return new VegetarianMealKitItem("VMK");
             }
             else if(playerChoice == '4')
             {
-                return boughtItem=new CarnivoreMealKitItem("CMK");
+                return new CarnivoreMealKitItem("CMK");
             }
             else if(playerChoice == '5')
             {
-                return boughtItem=new StegosaurEgg("Stegosaur egg");
+                return new StegosaurEgg("Stegosaur egg");
             }
             else if(playerChoice == '6')
             {
-                return boughtItem=new AllosaurEgg("Allosaur egg");
+                return new AllosaurEgg("Allosaur egg");
             }
             else if(playerChoice == '7')
             {
-                return boughtItem= new ArchaeopteryxEgg("Archaeopteryx egg");
+                return  new ArchaeopteryxEgg("Archaeopteryx egg");
             }
             else if(playerChoice == '8')
             {
-                return boughtItem= new AgilisaurusEgg("Agilisaurus Egg");
+                return new AgilisaurusEgg("Agilisaurus Egg");
             }
             else if(playerChoice == '9')
             {
-                return boughtItem=new LaserGun();
+                return new LaserGun();
             }
             else
             {
                 check=false;
             }
-        } while (!check);
+        } while (! check);
         return null;
     }
 }
