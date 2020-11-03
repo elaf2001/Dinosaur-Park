@@ -11,11 +11,6 @@ public class HuntingAction extends Action {
     protected Actor target;
 
     /**
-     * Random number generator
-     */
-    protected Random rand = new Random();
-
-    /**
      * Constructor.
      *
      * @param target the Actor to attack

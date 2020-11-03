@@ -19,6 +19,7 @@ public class BoughtItem extends PortableItem{
         this.priceEcoPoints= priceEcoPoints;
     }
 
+
     /**
      * Getter for the ecopoints
      * @return price in ecopoints

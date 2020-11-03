@@ -14,6 +14,7 @@ public class AttackAction extends Action {
 	 * The Actor that is to be attacked
 	 */
 	protected Actor target;
+
 	/**
 	 * Random number generator
 	 */

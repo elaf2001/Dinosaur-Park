@@ -43,7 +43,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Returns a collection of the Actions that the otherActor can do to the Dinosaur.
-     * Player is allowed to attack both dinosaurs species and Allosaur is able to attack the Stegosaur.
+     * Player is allowed to attack both dinosaurs species
      *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
@@ -53,11 +53,7 @@ public abstract class Dinosaur extends Actor {
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map){
         Actions actions = new Actions(new FeedAction(this));
-        if (otherActor instanceof Player){
-            actions.add(new AttackAction(this));
-        } else if(otherActor instanceof Allosaur && this instanceof Stegosaur){
-            actions.add(new AttackAction(this));
-        }
+        actions.add(new AttackAction(this));
         return actions;
     }
 
@@ -75,6 +71,9 @@ public abstract class Dinosaur extends Actor {
         return foodLevel;
     }
 
+    /**
+     *Returns the current water level
+     */
     public int getWaterLevel()
     {
         return waterLevel;
@@ -87,19 +86,26 @@ public abstract class Dinosaur extends Actor {
         return gender;
     }
 
+    /**
+     * Returns if the dinosaur is carnivore
+     */
     public boolean getIs_carnivore()
     {
         return is_carnivore;
     }
 
+    /**
+     * Returns if the dinosaur is vegetarian
+     */
     public boolean getIs_vegetarian()
     {
         return is_vegetarian;
     }
 
     /**
-     * Decreases dinosaur food level by 1
-     * This method is called once per turn, if the food level of the dinosaur is more than 0 and the dinosaur is alive.
+     * Decreases dinosaur food level and water level by 1
+     * This method is called once per turn, if the food level and water level
+     * of the dinosaur is more than 0 and the dinosaur is alive.
      */
     public void decreaseFoodWaterLevel()
     {
@@ -148,7 +154,11 @@ public abstract class Dinosaur extends Actor {
         }
     }
 
-
+    /**
+     * Allows the dinosaur to drink water which increases its water points
+     * This method is called if the dinosaur is fed or eating the food it found
+     * @param water is the food item that dinosuar is willing to eat
+     */
     public boolean drink(Water water){
         if (this.getWaterLevel()==100)
         {
@@ -229,11 +239,13 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Every turn:
-     * dinosaur food level is getting decreased,
+     * dinosaur food and water level is getting decreased,
      * age is increased
      * checks whether the dinosaur is conscious and if not count turns to die.
-     * Dinosaurs have hungry behaviour if its food level is lower than 30 and
-     * Breeding behaviour if its age and food level are more than 30.
+     * Dinosaurs have:
+     * Hungry behaviour if its food level is lower than 30
+     * Thirsty behaviour if its water level is lower than 30
+     * Breeding behaviour if its age is more than 30 and food level is more than 50
      *
      * @param actions  collection of possible Actions for this dinosaur
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()

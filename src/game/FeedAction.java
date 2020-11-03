@@ -27,8 +27,8 @@ public class FeedAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        String output="";
-        Display display= new Display();
+        String output = "";
+        Display display = new Display();
         display.println("What would you like to feed?");
         display.println("1. Hay  ");
         display.println("2. Fruit ");
@@ -36,9 +36,11 @@ public class FeedAction extends Action {
         display.println("4. Carnivore meal kit ");
         display.println("5. Stegosaur eggs ");
         display.println("6. Allosaur eggs ");
+        display.println("7. Archaeopteryx eggs ");
+        display.println("8. Agilisaurus eggs ");
         char playerChoice = display.readChar();
-        while (playerChoice != '1' && playerChoice !='2' && playerChoice != '3' && playerChoice != '4' && playerChoice != '5' && playerChoice != '6'){
-            playerChoice=display.readChar();
+        while (playerChoice != '1' && playerChoice != '2' && playerChoice != '3' && playerChoice != '4' && playerChoice != '5' && playerChoice != '6' && playerChoice != '7' && playerChoice != '8') {
+            playerChoice = display.readChar();
         }
         boolean found = false;
         if (playerChoice == '1' || playerChoice == '2' || playerChoice == '3') {
@@ -72,8 +74,7 @@ public class FeedAction extends Action {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 output += "This dinosaur is not vegeterain.\n";
             }
             if (!found) {
@@ -88,7 +89,6 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
-                            found = true;
                             break;
                         }
                     } else if (playerChoice == '5') {
@@ -96,7 +96,6 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
-                            found = true;
                             break;
                         }
                     } else if (playerChoice == '6') {
@@ -104,17 +103,28 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
-                            found = true;
+                            break;
+                        }
+                    } else if (playerChoice == '7') {
+                        if (item instanceof ArchaeopteryxEgg) {
+                            actor.removeItemFromInventory(item);
+                            target.eat((FoodItem) item);
+                            output += "Dinosaur is successfully fed";
                             break;
                         }
                     }
+                    else {
+                        if (item instanceof AgilisaurusEgg) {
+                            actor.removeItemFromInventory(item);
+                            target.eat((FoodItem) item);
+                            output += "Dinosaur is successfully fed";
+                            break;
+                        }
+                    }
+                    output += "The following item is not found in your inventory";
                 }
-            } else {
-                output += "This dinosaur is not carnivore.\n";
             }
-            if (!found) {
-                output += "The following item is not found in your inventory";
-            }
+
         }
         return output;
     }

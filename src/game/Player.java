@@ -5,8 +5,19 @@ import edu.monash.fit2099.interfaces.ActorInterface;
 
 /**
  * Class representing the Player.
- * menu is the main interaction tool
+ *
+ * menu is the main interaction
+ *
  * ecoPoints is amount of the local currency that the player has
+ *
+ * moveChoice is set if the user chooses the challenge game and
+ * it is a number of moves that the game runs till it ends
+ *
+ * turns is needed the counter that records how many turns the game
+ * already ran, when turns reaches the moveChoice the game terminates
+ *
+ * ecoPointsChoice is the number of ecoPoints the user chooses
+ * to reach till the game ends
  */
 public class Player extends Actor implements ActorInterface {
 
@@ -93,11 +104,17 @@ public class Player extends Actor implements ActorInterface {
 		this.ecoPoints += ecoPoints;
 	}
 
+	/**
+	 * if the user chooses the challenge game, sets the values of:
+	 * number of moves and number of eco points
+	 * the user has chosen to play the game
+	 * @param moveChoice a number of moves that the game runs till it ends
+	 * @param ecoPointsChoice is the number of ecoPoints the user chooses
+	 * to reach till the game ends
+	 */
 	public void setChallenge(int moveChoice, int ecoPointsChoice){
 		this.moveChoice = moveChoice;
 		this.ecoPointsChoice = ecoPointsChoice;
 	}
-
-
 
 }

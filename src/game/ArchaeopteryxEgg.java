@@ -21,29 +21,6 @@ public class ArchaeopteryxEgg extends EggItem {
     }
 
     /**
-     * Inform a carried Item of the passage of time.
-     *
-     * This method is called once per turn, if the Item is being carried.
-     * @param currentLocation The location of the actor carrying this Item.
-     * @param actor The actor carrying this Item.
-     */
-    @Override
-    public void tick(Location currentLocation, Actor actor){
-        super.tick(currentLocation, actor);
-    }
-
-    /**
-     * Overrides the method from the EggItem class, which increases ecoPoints of the player when the
-     * egg hatches.
-     * @param location location of the item
-     * @param ecoPoints the amount of ecoPoints, that will be added to the player, when the egg hatches
-     */
-    @Override
-    public void increasePlayerPoints(Location location, int ecoPoints) {
-        super.increasePlayerPoints(location, ecoPoints);
-    }
-
-    /**
      * This function allows the egg to hatch by removing the egg item and adding
      * a new Archaeopteryx.
      * If there is an actor standing on the location of the egg, it will
@@ -54,6 +31,7 @@ public class ArchaeopteryxEgg extends EggItem {
         currentLocation.removeItem(this);
         this.increasePlayerPoints(currentLocation,600);
         Archaeopteryx newArchaeopteryx = new Archaeopteryx("Archaeopteryx");
+        //if the actor is standing on the egg, the dinosaur hatches to the nearest empty square
         if(currentLocation.containsAnActor()){
             List<Exit> exits = currentLocation.getExits();
             for(Exit exit: exits){

@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.*;
 public class Application {
 
 	public static void main(String[] args) {
-		boolean check = true;
+		boolean check = true; //while loop iterator, lets the user to leave the app only when the quit option is chosen
 		while (check){
 			World world = new World(new Display());
 			FancyGroundFactory groundFactory = new FancyGroundFactory(new GrassDirt(), new Wall(), new Floor(), new Tree(), new VendingMachine(), new Water());
@@ -96,7 +96,7 @@ public class Application {
 			}
 
 			Player player = new Player("Player", '@', 100);
-			world.addPlayer(player, gameMap.at(9, 0));
+			world.addPlayer(player, gameMap.at(9, 3));
 
 			// Place a pair of stegosaurs in the middle of the map
 			gameMap.at(10, 12).addActor(new Stegosaur("Stegosaur", 30));
@@ -116,31 +116,39 @@ public class Application {
 					boolean moveCheck = true;
 					while(moveCheck){
 						displayInt.println("choose the number of moves: ");
-						boolean success = true;
-						int moveChoice = 0;
-						int ecoPointsChoice = 0;
+						boolean success = true; //stays tru if the user inputs do not raise error
+						int moveChoice = 0; //initializing number of moves
+						int ecoPointsChoice = 0; //initializing number of eco points
 						try {
-							moveChoice = displayInt.readInt();
+							moveChoice = displayInt.readInt(); //prompting the user for number of moves
 							displayInt.println("choose the number of Eco Points: ");
-							ecoPointsChoice = displayInt.readInt();
-							if(moveChoice<0 || ecoPointsChoice <0 ){
+							ecoPointsChoice = displayInt.readInt(); //prompting the user for number of eco points
+							if(moveChoice<0 || ecoPointsChoice <0 ) //validating values
+							{
 								success = false;
 								System.out.println("Ensure that both inputs are greater than zero!");
 							}
-						} catch(Exception e) {
+						}
+						catch(Exception e) //catching if the error is raised
+						{
 							success = false;
 							System.out.println("Ensure that both inputs are integers!");
 						} 
-						if (success) {
+						if (success) //if both inputs are valid,  the game starts
+						{
 							player.setChallenge(moveChoice, ecoPointsChoice);
 							moveCheck = false;
 						}
 					}
 				}
 				world.run();
-			}else if( playerChoice == '3') { //quit
+			}
+			else if( playerChoice == '3') //quit
+			{
 				check = false;
-			} else {
+			}
+			else //in case of invalid user input
+			{
 				display.println("Invalid input. Please choose from the displayed menu!");
 			}
 		}

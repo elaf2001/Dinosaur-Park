@@ -2,7 +2,6 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
