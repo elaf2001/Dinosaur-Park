@@ -32,7 +32,7 @@ public class BuyItemAction extends Action {
         if (actor instanceof Player) {
             if (((Player) actor).getEcoPoints() >= requiredEcoPoints) {
                 ((Player) actor).payEcoPoints(requiredEcoPoints);
-                ((Player) actor).addItemToInventory(itemToBuy);
+                actor.addItemToInventory(itemToBuy);
                 output += "Item is successfully bought";
             } else {
                 output += "Not enough money to buy the following item";
@@ -48,6 +48,6 @@ public class BuyItemAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor+" buys from"+ " vending Machine";
+        return actor+" buys from vending Machine";
     }
 }

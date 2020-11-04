@@ -17,7 +17,6 @@ public class BreedingAction extends Action{
 
     /**
      * Constructor.
-     *
      * @param target the Dinosaur to breed with
      */
     public BreedingAction(Dinosaur target) {
@@ -38,31 +37,33 @@ public class BreedingAction extends Action{
         {
             if (((Dinosaur) actor).getAge()>30 && target.getAge()>30)
             {
+                EggItem newEgg;
+                //adding a proper egg to a proper dinosaur
                 if (actor instanceof Allosaur)
                 {
-                    AllosaurEgg newEgg= new AllosaurEgg("AG");
-                    if( ((Dinosaur) actor).getGender()=="female")
-                    {
-                        actor.addItemToInventory(newEgg);
-                        return menuDescription(actor);
-                    }
-                    else {
-                        target.addItemToInventory(newEgg);
-                        return menuDescription(actor);
-                    }
+                    newEgg = new AllosaurEgg("Allosaur Egg");
+                }
+                else if (actor instanceof Agilisaurus)
+                {
+                    newEgg = new AgilisaurusEgg("Agilisaurus egg");
+                }
+                else if (actor instanceof Archaeopteryx)
+                {
+                    newEgg = new ArchaeopteryxEgg("Archaeopteryx egg");
+                }
+                else
+                {
+                    newEgg = new StegosaurEgg("Stegosaur egg");
+                }
+                // adding the egg to a female dinosaur
+                if ( ((Dinosaur) actor).getGender()=="female")
+                {
+                    actor.addItemToInventory(newEgg);
                 }
                 else {
-                    StegosaurEgg newEgg= new StegosaurEgg("SG");
-                    if ( ((Dinosaur) actor).getGender()=="female")
-                    {
-                        actor.addItemToInventory(newEgg);
-                        return menuDescription(actor);
-                    }
-                    else {
-                        target.addItemToInventory(newEgg);
-                        return menuDescription(actor);
-                    }
+                    target.addItemToInventory(newEgg);
                 }
+                return menuDescription(actor);
             }
         }
         return "Dinosaurs couldn't mate";
@@ -72,7 +73,7 @@ public class BreedingAction extends Action{
      * Returns a description of this movement suitable to display in the menu.
      *
      * @param actor The actor performing the action.
-     * @return a String, e.g. "Player moves east"
+     * @return a String explaining what happened
      */
     @Override
     public String menuDescription(Actor actor) {

@@ -1,7 +1,5 @@
 package game;
 
-import edu.monash.fit2099.engine.Item;
-
 /**
  * Class that represents the item, which is created if the dinosaur dies.
  **/

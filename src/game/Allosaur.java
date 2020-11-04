@@ -1,11 +1,10 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A carnivorous dinosaur
+ * A carnivorous dinosaur of allosaur specie
  *
  */
 public class Allosaur extends Dinosaur {
@@ -17,7 +16,7 @@ public class Allosaur extends Dinosaur {
      * @param name the name of this Allosaur
      */
     public Allosaur(String name) {
-        super(name, 'a', 100, 30, true, false);
+        super(name, 'a', 100, 10, true, false);
     }
 
     /**

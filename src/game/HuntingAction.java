@@ -10,8 +10,6 @@ public class HuntingAction extends Action {
      */
     protected Actor target;
 
-
-
     /**
      * Constructor.
      *

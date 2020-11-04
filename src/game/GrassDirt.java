@@ -1,10 +1,8 @@
 package game;
 
 import edu.monash.fit2099.engine.*;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * A class that represents bare dirt and grass.

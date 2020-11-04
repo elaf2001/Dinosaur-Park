@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 /**
- * Special Action for allowing the dinosaur to eat food iteams.
+ * Special Action for allowing the dinosaur to eat food items.
  * item is the food item that will be eaten by the dinosaur
  */
 public class EatingAction extends Action {
@@ -48,11 +48,4 @@ public class EatingAction extends Action {
         return actor +" ate " + this.item;
     }
 
-    //@Override
-//    public String execute(Dinosaur dinosaur, GameMap map) {
-//            if (dinosaur.eat(this.item)) {
-//                return menuDescription(dinosaur);
-//            }
-//        return null;
-//    }
 }
