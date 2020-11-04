@@ -55,8 +55,6 @@ public abstract class Dinosaur extends Actor {
         Actions actions = new Actions(new FeedAction(this));
         if (otherActor instanceof Player){
             actions.add(new AttackAction(this));
-        } else if(otherActor instanceof Allosaur && this instanceof Stegosaur){
-            actions.add(new AttackAction(this));
         }
         return actions;
     }
