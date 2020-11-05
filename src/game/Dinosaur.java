@@ -156,7 +156,7 @@ public abstract class Dinosaur extends Actor {
 
     /**
      * Allows the dinosaur to drink water which increases its water points
-     * This method is called if the dinosaur is fed or eating the food it found
+     * This method is called if the dinosaur is drinking water it found
      * @param water is the food item that dinosuar is willing to eat
      */
     public boolean drink(Water water){
