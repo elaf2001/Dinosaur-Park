@@ -36,7 +36,7 @@ public class Player extends Actor implements ActorInterface {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		this.ecoPoints=100000;
+		this.ecoPoints=10000000;
 	}
 
 	/**
@@ -51,6 +51,7 @@ public class Player extends Actor implements ActorInterface {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		System.out.println(this.getEcoPoints());
 		Location locationOfPlayer = map.locationOf(this);
 
 		if(locationOfPlayer.getGround() instanceof Tree){

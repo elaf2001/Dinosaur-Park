@@ -35,7 +35,12 @@ public class HungryBehaviour implements Behaviour {
                 List<Item> items = current.getItems();
                 //looking for locations of items around the map
                 for(Item item: items){
-                    if(dinosaur.getIs_vegetarian()){
+                    if(dinosaur.getIs_carnivore() && dinosaur.getIs_vegetarian()){
+                        if(item instanceof FoodItem){
+                            locations.add(current);
+                        }
+                    }
+                    else if(dinosaur.getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             locations.add(current);
                         }
@@ -87,7 +92,12 @@ public class HungryBehaviour implements Behaviour {
             if(locationOfActor == minLocation){
                 List<Item> items = minLocation.getItems();
                 for(Item item: items){
-                    if(dinosaur.getIs_vegetarian()){
+                    if(dinosaur.getIs_vegetarian() && dinosaur.getIs_carnivore()){
+                        if(item instanceof FoodItem){
+                            return new EatingAction((FoodItem) item);
+                        }
+                    }
+                    else if(dinosaur.getIs_vegetarian()){
                         if(item instanceof FruitItem || item instanceof HayItem || item instanceof VegetarianMealKitItem){
                             minLocation.removeItem(item);
                             return new EatingAction((FoodItem) item);

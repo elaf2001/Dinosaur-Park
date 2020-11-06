@@ -32,6 +32,7 @@ public class EatingAction extends Action {
     public String execute(Actor actor, GameMap map) {
         if(actor instanceof Dinosaur){
             if (((Dinosaur) actor).eat(this.item)) {
+                map.locationOf(actor).removeItem(this.item);
                 return menuDescription(actor);
             }
         }
