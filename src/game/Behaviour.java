@@ -27,4 +27,5 @@ public interface Behaviour {
 	 * @return an Action that actor can perform, or null if actor can't do this.
 	 */
 	Action getAction(Dinosaur dinosaur, GameMap map);
+
 }

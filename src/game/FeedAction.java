@@ -74,11 +74,12 @@ public class FeedAction extends Action {
                         }
                     }
                 }
-            } else {
-                output += "This dinosaur is not vegeterain.\n";
+                if (!found) {
+                    output += "The following item is not found in your inventory";
+                }
             }
-            if (!found) {
-                output += "The following item is not found in your inventory";
+            else {
+                output += "This dinosaur is not vegeterain.\n";
             }
         }
         else {
@@ -89,6 +90,7 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
+                            found=true;
                             break;
                         }
                     } else if (playerChoice == '5') {
@@ -103,6 +105,7 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
+                            found=true;
                             break;
                         }
                     } else if (playerChoice == '7') {
@@ -110,6 +113,7 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
+                            found=true;
                             break;
                         }
                     }
@@ -118,13 +122,20 @@ public class FeedAction extends Action {
                             actor.removeItemFromInventory(item);
                             target.eat((FoodItem) item);
                             output += "Dinosaur is successfully fed";
+                            found=true;
                             break;
                         }
                     }
+                }
+                if (!found)
+                {
                     output += "The following item is not found in your inventory";
                 }
             }
-
+            else
+            {
+                output += "This dinosaur is not carnivore.\n";
+            }
         }
         return output;
     }

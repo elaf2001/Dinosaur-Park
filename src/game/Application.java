@@ -108,7 +108,7 @@ public class Application {
 			display.println("What game mode would you like to play?");
 			display.println("1. Challenge game");
 			display.println("2. Sandbox game");
-			display.println("3. quit program");
+			display.println("3. Quit program");
 			DisplayInt displayInt = new DisplayInt();
 			char playerChoice=display.readChar();
 			if(playerChoice == '1' || playerChoice == '2'){ //checking for valid inputs

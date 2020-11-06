@@ -4,6 +4,13 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.Random;
 
+/**
+ *
+ * This action allows the Allosaur to hunt for the Agilisaurus and
+ * Allows the Archaeopteryx to hunt for all other dinosaurs.
+ * The hunting is implemented when the dinosaur is next to its target dinosaur.
+ * Hunting damages other dinosaur by 50.
+ */
 public class HuntingAction extends Action {
     /**
      * The Actor that is to be attacked
